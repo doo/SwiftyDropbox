@@ -73,7 +73,7 @@ open class DropboxClientsManager {
         }
     }
 
-    static func setupAuthorizedClient(_ accessToken: DropboxAccessToken?, transportClient: DropboxTransportClient?) {
+    open static func setupAuthorizedClient(_ accessToken: DropboxAccessToken?, transportClient: DropboxTransportClient?) {
         if let accessToken = accessToken {
             if let transportClient = transportClient {
                 transportClient.accessToken = accessToken.accessToken
