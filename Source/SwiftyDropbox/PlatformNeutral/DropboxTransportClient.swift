@@ -123,7 +123,7 @@ open class DropboxTransportClient {
 
         return uploadRequestObj
     }
-
+    
     open func request<ASerial: JSONSerializer, RSerial: JSONSerializer, ESerial: JSONSerializer>(_ route: Route<ASerial, RSerial, ESerial>,
                         serverArgs: ASerial.ValueType, overwrite: Bool, destination: @escaping (URL, HTTPURLResponse) -> URL) -> DownloadRequestFile<RSerial, ESerial> {
         let host = route.attrs["host"]! ?? "api"
@@ -194,7 +194,7 @@ open class DropboxTransportClient {
         return downloadRequestObj
     }
 
-    fileprivate func getHeaders(_ routeStyle: RouteStyle, jsonRequest: Data?, host: String) -> HTTPHeaders {
+    func getHeaders(_ routeStyle: RouteStyle, jsonRequest: Data?, host: String) -> HTTPHeaders {
         var headers = ["User-Agent": self.userAgent]
         let noauth = (host == "notify")
 

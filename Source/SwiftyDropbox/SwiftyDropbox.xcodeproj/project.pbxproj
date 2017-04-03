@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		47082DC81E92611C001B9626 /* ScanbotAddition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47082DC71E92611C001B9626 /* ScanbotAddition.swift */; };
 		F25D1B861D9776A500B748CF /* SwiftyDropbox.h in Headers */ = {isa = PBXBuildFile; fileRef = F25D1B851D9776A500B748CF /* SwiftyDropbox.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F25D1B881D97772400B748CF /* SwiftyDropbox.h in Headers */ = {isa = PBXBuildFile; fileRef = F25D1B851D9776A500B748CF /* SwiftyDropbox.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F2C54A9E1D89F6F0003A2675 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2C54A9D1D89F6F0003A2675 /* Alamofire.framework */; };
@@ -70,6 +71,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		47082DC71E92611C001B9626 /* ScanbotAddition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScanbotAddition.swift; sourceTree = "<group>"; };
 		F25D1B851D9776A500B748CF /* SwiftyDropbox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwiftyDropbox.h; sourceTree = "<group>"; };
 		F2C54A9D1D89F6F0003A2675 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = ../../Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		F2C54A9F1D89F6FA003A2675 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = ../../Carthage/Build/Mac/Alamofire.framework; sourceTree = "<group>"; };
@@ -137,6 +139,7 @@
 		F2C6FCBB1D89E16800E0DD9E = {
 			isa = PBXGroup;
 			children = (
+				47082DC71E92611C001B9626 /* ScanbotAddition.swift */,
 				F2DB176D1D930A66005D7934 /* SwiftyDropbox_iOS */,
 				F2DB17751D930A6E005D7934 /* SwiftyDropbox_macOS */,
 				F2DB177D1D930A7C005D7934 /* PlatformNeutral */,
@@ -369,6 +372,7 @@
 				F2DB17C51D930A7C005D7934 /* Users.swift in Sources */,
 				F2DB17C31D930A7C005D7934 /* TeamRoutes.swift in Sources */,
 				F2DB17AB1D930A7C005D7934 /* Files.swift in Sources */,
+				47082DC81E92611C001B9626 /* ScanbotAddition.swift in Sources */,
 				F2DB17B51D930A7C005D7934 /* SharingRoutes.swift in Sources */,
 				F2DB17A31D930A7C005D7934 /* DropboxClient.swift in Sources */,
 				F2DB17BB1D930A7C005D7934 /* StoneValidators.swift in Sources */,
