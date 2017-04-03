@@ -95,11 +95,13 @@ open class DropboxMobileOAuthManager: DropboxOAuthManager {
             }
             let state = results["state"]?.components(separatedBy: "%3A") ?? []
 
-            let nonce = UserDefaults.standard.object(forKey: kDBLinkNonce) as? String
-            if state.count == 2 && state[0] == "oauth2" && state[1] == nonce! {
-                let accessToken = results["oauth_token_secret"]!
-                let uid = results["uid"]!
-                return .success(DropboxAccessToken(accessToken: accessToken, uid: uid))
+            let nonce = (UserDefaults.standard.object(forKey: kDBLinkNonce) as? String) ?? ""
+            if state.count == 2 && state[0] == "oauth2" && state[1] == nonce {
+                if let accessToken = results["oauth_token_secret"], let uid = results["uid"] {
+                    return .success(DropboxAccessToken(accessToken: accessToken, uid: uid))
+                } else {
+                    return .error(.unknown, "Unable to verify link request")
+                }
             } else {
                 return .error(.unknown, "Unable to verify link request")
             }
