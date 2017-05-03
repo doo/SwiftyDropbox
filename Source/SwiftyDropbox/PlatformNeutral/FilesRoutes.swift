@@ -11,6 +11,7 @@ open class FilesRoutes {
         self.client = client
     }
 
+    /*
     /// Returns the metadata for a file or folder. This is an alpha endpoint compatible with the properties API. Note:
     /// Metadata for the root folder is unsupported.
     ///
@@ -145,7 +146,7 @@ open class FilesRoutes {
         let serverArgs = Files.SaveCopyReferenceArg(copyReference: copyReference, path: path)
         return client.request(route, serverArgs: serverArgs)
     }
-
+     */
     /// Create a folder at a given path.
     ///
     /// - parameter path: Path in the user's Dropbox to create.
@@ -159,7 +160,7 @@ open class FilesRoutes {
         let serverArgs = Files.CreateFolderArg(path: path, autorename: autorename)
         return client.request(route, serverArgs: serverArgs)
     }
-
+    /*
     /// Delete the file or folder at a given path. If the path is a folder, all its contents will be deleted too. A
     /// successful response indicates that the file or folder was deleted. The returned metadata will be the
     /// corresponding FileMetadata or FolderMetadata for the item at time of deletion, and not a DeletedMetadata object.
@@ -329,7 +330,7 @@ open class FilesRoutes {
         let serverArgs = Files.ThumbnailArg(path: path, format: format, size: size)
         return client.request(route, serverArgs: serverArgs)
     }
-
+     */
     /// Starts returning the contents of a folder. If the result's hasMore in ListFolderResult field is true, call
     /// listFolderContinue with the returned cursor in ListFolderResult to retrieve more entries. If you're using
     /// recursive in ListFolderArg set to true to keep a local cache of the contents of a Dropbox account, iterate
@@ -371,7 +372,7 @@ open class FilesRoutes {
         let serverArgs = Files.ListFolderContinueArg(cursor: cursor)
         return client.request(route, serverArgs: serverArgs)
     }
-
+    /*
     /// A way to quickly get a cursor for the folder's state. Unlike listFolder, listFolderGetLatestCursor doesn't
     /// return any entries. This endpoint is for app which only needs to know about new files and modifications and
     /// doesn't need to know about files that already exist in Dropbox.
@@ -923,5 +924,5 @@ open class FilesRoutes {
         let serverArgs = Files.UploadSessionStartArg(close: close)
         return client.request(route, serverArgs: serverArgs, input: .stream(input))
     }
-
+     */
 }
