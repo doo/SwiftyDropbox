@@ -14,14 +14,14 @@ open class DropboxBase {
     /// Routes within the files namespace. See FilesRoutes for details.
     open var files: FilesRoutes!
     /// Routes within the sharing namespace. See SharingRoutes for details.
-    open var sharing: SharingRoutes!
+    //open var sharing: SharingRoutes!
     /// Routes within the users namespace. See UsersRoutes for details.
     open var users: UsersRoutes!
 
     public init(client: DropboxTransportClient) {
         self.auth = AuthRoutes(client: client)
         self.files = FilesRoutes(client: client)
-        self.sharing = SharingRoutes(client: client)
+        //self.sharing = SharingRoutes(client: client)
         self.users = UsersRoutes(client: client)
     }
 }

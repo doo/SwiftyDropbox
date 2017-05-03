@@ -10,9 +10,9 @@ import Alamofire
 
 open class DropboxTeamBase {
     /// Routes within the team namespace. See TeamRoutes for details.
-    open var team: TeamRoutes!
+    //open var team: TeamRoutes!
 
     public init(client: DropboxTransportClient) {
-        self.team = TeamRoutes(client: client)
+        //self.team = TeamRoutes(client: client)
     }
 }

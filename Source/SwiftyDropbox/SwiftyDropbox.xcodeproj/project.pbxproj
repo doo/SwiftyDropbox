@@ -46,9 +46,7 @@
 		F2DB17B01D930A7C005D7934 /* OAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2DB178A1D930A7C005D7934 /* OAuth.swift */; };
 		F2DB17B11D930A7C005D7934 /* Properties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2DB178B1D930A7C005D7934 /* Properties.swift */; };
 		F2DB17B21D930A7C005D7934 /* Properties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2DB178B1D930A7C005D7934 /* Properties.swift */; };
-		F2DB17B31D930A7C005D7934 /* Sharing.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2DB178C1D930A7C005D7934 /* Sharing.swift */; };
 		F2DB17B41D930A7C005D7934 /* Sharing.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2DB178C1D930A7C005D7934 /* Sharing.swift */; };
-		F2DB17B51D930A7C005D7934 /* SharingRoutes.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2DB178D1D930A7C005D7934 /* SharingRoutes.swift */; };
 		F2DB17B61D930A7C005D7934 /* SharingRoutes.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2DB178D1D930A7C005D7934 /* SharingRoutes.swift */; };
 		F2DB17B71D930A7C005D7934 /* StoneBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2DB178E1D930A7C005D7934 /* StoneBase.swift */; };
 		F2DB17B81D930A7C005D7934 /* StoneBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2DB178E1D930A7C005D7934 /* StoneBase.swift */; };
@@ -56,13 +54,11 @@
 		F2DB17BA1D930A7C005D7934 /* StoneSerializers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2DB178F1D930A7C005D7934 /* StoneSerializers.swift */; };
 		F2DB17BB1D930A7C005D7934 /* StoneValidators.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2DB17901D930A7C005D7934 /* StoneValidators.swift */; };
 		F2DB17BC1D930A7C005D7934 /* StoneValidators.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2DB17901D930A7C005D7934 /* StoneValidators.swift */; };
-		F2DB17BD1D930A7C005D7934 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2DB17911D930A7C005D7934 /* Team.swift */; };
 		F2DB17BE1D930A7C005D7934 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2DB17911D930A7C005D7934 /* Team.swift */; };
 		F2DB17BF1D930A7C005D7934 /* TeamCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2DB17921D930A7C005D7934 /* TeamCommon.swift */; };
 		F2DB17C01D930A7C005D7934 /* TeamCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2DB17921D930A7C005D7934 /* TeamCommon.swift */; };
 		F2DB17C11D930A7C005D7934 /* TeamPolicies.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2DB17931D930A7C005D7934 /* TeamPolicies.swift */; };
 		F2DB17C21D930A7C005D7934 /* TeamPolicies.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2DB17931D930A7C005D7934 /* TeamPolicies.swift */; };
-		F2DB17C31D930A7C005D7934 /* TeamRoutes.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2DB17941D930A7C005D7934 /* TeamRoutes.swift */; };
 		F2DB17C41D930A7C005D7934 /* TeamRoutes.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2DB17941D930A7C005D7934 /* TeamRoutes.swift */; };
 		F2DB17C51D930A7C005D7934 /* Users.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2DB17951D930A7C005D7934 /* Users.swift */; };
 		F2DB17C61D930A7C005D7934 /* Users.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2DB17951D930A7C005D7934 /* Users.swift */; };
@@ -362,18 +358,14 @@
 				F2DB179F1D930A7C005D7934 /* BaseTeam.swift in Sources */,
 				F2DB17B11D930A7C005D7934 /* Properties.swift in Sources */,
 				F2DB17B71D930A7C005D7934 /* StoneBase.swift in Sources */,
-				F2DB17B31D930A7C005D7934 /* Sharing.swift in Sources */,
 				F2DB17AD1D930A7C005D7934 /* FilesRoutes.swift in Sources */,
 				F2DB17A71D930A7C005D7934 /* DropboxTeamClient.swift in Sources */,
-				F2DB17BD1D930A7C005D7934 /* Team.swift in Sources */,
 				F2DB17C71D930A7C005D7934 /* UsersRoutes.swift in Sources */,
 				F2DB17A91D930A7C005D7934 /* DropboxTransportClient.swift in Sources */,
 				F2DB17731D930A66005D7934 /* OAuthMobile.swift in Sources */,
 				F2DB17C51D930A7C005D7934 /* Users.swift in Sources */,
-				F2DB17C31D930A7C005D7934 /* TeamRoutes.swift in Sources */,
 				F2DB17AB1D930A7C005D7934 /* Files.swift in Sources */,
 				47082DC81E92611C001B9626 /* ScanbotAddition.swift in Sources */,
-				F2DB17B51D930A7C005D7934 /* SharingRoutes.swift in Sources */,
 				F2DB17A31D930A7C005D7934 /* DropboxClient.swift in Sources */,
 				F2DB17BB1D930A7C005D7934 /* StoneValidators.swift in Sources */,
 				F2DB17A51D930A7C005D7934 /* DropboxClientsManager.swift in Sources */,
