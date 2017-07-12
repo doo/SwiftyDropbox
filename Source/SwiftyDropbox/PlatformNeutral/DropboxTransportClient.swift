@@ -67,7 +67,7 @@ open class DropboxTransportClient {
             rawJsonRequest = SerializeUtil.dumpJSON(jsonRequestObj)
         } else {
             let voidSerializer = route.argSerializer as! VoidSerializer
-            let jsonRequestObj = voidSerializer.serialize()
+            let jsonRequestObj = voidSerializer.serialize({}())
             rawJsonRequest = SerializeUtil.dumpJSON(jsonRequestObj)
         }
 
