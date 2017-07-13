@@ -93,21 +93,21 @@ open class MobileSharedApplication: SharedApplication {
 }
 
 open class DropboxConnectController: UIViewController, WKNavigationDelegate {
-    var webView: WKWebView!
+    @objc var webView: WKWebView!
 
-    var onWillDismiss: ((_ didCancel: Bool) -> Void)?
-    var tryIntercept: ((_ url: URL) -> Bool)?
+    @objc var onWillDismiss: ((_ didCancel: Bool) -> Void)?
+    @objc var tryIntercept: ((_ url: URL) -> Bool)?
 
-    var cancelButton: UIBarButtonItem?
-    var cancelHandler: (() -> Void) = {}
+    @objc var cancelButton: UIBarButtonItem?
+    @objc var cancelHandler: (() -> Void) = {}
 
-    var indicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+    @objc var indicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
 
     public init() {
         super.init(nibName: nil, bundle: nil)
     }
 
-    public init(URL: Foundation.URL, tryIntercept: @escaping ((_ url: Foundation.URL) -> Bool), cancelHandler: @escaping (() -> Void)) {
+    @objc public init(URL: Foundation.URL, tryIntercept: @escaping ((_ url: Foundation.URL) -> Bool), cancelHandler: @escaping (() -> Void)) {
         super.init(nibName: nil, bundle: nil)
         self.startURL = URL
         self.tryIntercept = tryIntercept
@@ -165,7 +165,7 @@ open class DropboxConnectController: UIViewController, WKNavigationDelegate {
         indicator.removeFromSuperview()
     }
 
-    open var startURL: URL? {
+    @objc open var startURL: URL? {
         didSet(oldURL) {
             if nil != startURL && nil == oldURL && isViewLoaded {
                 loadURL(startURL!)
@@ -173,29 +173,29 @@ open class DropboxConnectController: UIViewController, WKNavigationDelegate {
         }
     }
 
-    open func loadURL(_ url: URL) {
+    @objc open func loadURL(_ url: URL) {
         webView.load(URLRequest(url: url))
     }
 
-    func showHideBackButton(_ show: Bool) {
+    @objc func showHideBackButton(_ show: Bool) {
         navigationItem.leftBarButtonItem = show ? UIBarButtonItem(barButtonSystemItem: .rewind, target: self, action: #selector(DropboxConnectController.goBack(_:))) : nil
     }
 
-    func goBack(_ sender: AnyObject?) {
+    @objc func goBack(_ sender: AnyObject?) {
         webView.goBack()
     }
 
-    func cancel(_ sender: AnyObject?) {
+    @objc func cancel(_ sender: AnyObject?) {
         dismiss(true, animated: (sender != nil))
 
         self.cancelHandler()
     }
 
-    func dismiss(_ animated: Bool) {
+    @objc func dismiss(_ animated: Bool) {
         dismiss(false, animated: animated)
     }
 
-    func dismiss(_ asCancel: Bool, animated: Bool) {
+    @objc func dismiss(_ asCancel: Bool, animated: Bool) {
         webView.stopLoading()
 
         self.onWillDismiss?(asCancel)
