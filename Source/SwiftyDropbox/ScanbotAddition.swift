@@ -22,7 +22,7 @@ extension FilesRoutes {
 
 extension DropboxTransportClient {
     
-    func scanbot_request<ASerial: JSONSerializer, RSerial: JSONSerializer, ESerial: JSONSerializer>(
+    func scanbot_request<ASerial, RSerial, ESerial>(
         _ route: Route<ASerial, RSerial, ESerial>, serverArgs: ASerial.ValueType, input: UploadBody) -> URLRequest? {
         
         let host = route.attrs["host"]! ?? "api"
