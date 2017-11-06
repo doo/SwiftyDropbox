@@ -218,7 +218,7 @@ open class NSDateSerializer: JSONSerializer {
                 }
                 newFormat += symbolForToken(token)
             } else {
-                if "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ".characters.contains(format[i]) {
+                if "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ".contains(format[i]) {
                     if !inQuotedText {
                         newFormat += "'"
                         inQuotedText = true
