@@ -141,7 +141,7 @@ open class DropboxOAuthManager {
 
     // MARK: Shared instance
     /// A shared instance of a `DropboxOAuthManager` for convenience
-    open static var sharedOAuthManager: DropboxOAuthManager!
+    public static var sharedOAuthManager: DropboxOAuthManager!
 
     // MARK: Functions
     public init(appKey: String, host: String) {
@@ -397,10 +397,10 @@ open class DropboxOAuthManager {
 open class DropboxAccessToken: CustomStringConvertible {
 
     /// The access token string
-    open let accessToken: String
+    public let accessToken: String
 
     /// The associated user
-    open let uid: String
+    public let uid: String
 
     public init(accessToken: String, uid: String) {
         self.accessToken = accessToken

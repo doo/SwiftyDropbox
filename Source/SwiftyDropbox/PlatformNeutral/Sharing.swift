@@ -131,18 +131,18 @@ open class Sharing {
     /// Arguments for addFileMember.
     open class AddFileMemberArgs: CustomStringConvertible {
         /// File to which to add members.
-        open let file: String
+        public let file: String
         /// Members to add. Note that even an email address is given, this may result in a user being directy added to
         /// the membership if that email is the user's main account email.
-        open let members: Array<Sharing.MemberSelector>
+        public let members: Array<Sharing.MemberSelector>
         /// Message to send to added members in their invitation.
-        open let customMessage: String?
+        public let customMessage: String?
         /// Whether added members should be notified via device notifications of their invitation.
-        open let quiet: Bool
+        public let quiet: Bool
         /// AccessLevel union object, describing what access level we want to give new members.
-        open let accessLevel: Sharing.AccessLevel
+        public let accessLevel: Sharing.AccessLevel
         /// If the custom message should be added as a comment on the file.
-        open let addMessageAsComment: Bool
+        public let addMessageAsComment: Bool
         public init(file: String, members: Array<Sharing.MemberSelector>, customMessage: String? = nil, quiet: Bool = false, accessLevel: Sharing.AccessLevel = .viewer, addMessageAsComment: Bool = false) {
             stringValidator(minLength: 1, pattern: "((/|id:).*|nspath:[0-9]+:.*)|ns:[0-9]+(/.*)?")(file)
             self.file = file
@@ -258,13 +258,13 @@ open class Sharing {
     /// The AddFolderMemberArg struct
     open class AddFolderMemberArg: CustomStringConvertible {
         /// The ID for the shared folder.
-        open let sharedFolderId: String
+        public let sharedFolderId: String
         /// The intended list of members to add.  Added members will receive invites to join the shared folder.
-        open let members: Array<Sharing.AddMember>
+        public let members: Array<Sharing.AddMember>
         /// Whether added members should be notified via email and device notifications of their invite.
-        open let quiet: Bool
+        public let quiet: Bool
         /// Optional message to display to added members in their invitation.
-        open let customMessage: String?
+        public let customMessage: String?
         public init(sharedFolderId: String, members: Array<Sharing.AddMember>, quiet: Bool = false, customMessage: String? = nil) {
             stringValidator(pattern: "[-_0-9a-zA-Z:]+")(sharedFolderId)
             self.sharedFolderId = sharedFolderId
@@ -433,9 +433,9 @@ open class Sharing {
     /// The member and type of access the member should have when added to a shared folder.
     open class AddMember: CustomStringConvertible {
         /// The member to add to the shared folder.
-        open let member: Sharing.MemberSelector
+        public let member: Sharing.MemberSelector
         /// The access level to grant member to the shared folder.  owner in AccessLevel is disallowed.
-        open let accessLevel: Sharing.AccessLevel
+        public let accessLevel: Sharing.AccessLevel
         public init(member: Sharing.MemberSelector, accessLevel: Sharing.AccessLevel = .viewer) {
             self.member = member
             self.accessLevel = accessLevel
@@ -555,11 +555,11 @@ open class Sharing {
     /// Arguments for changeFileMemberAccess.
     open class ChangeFileMemberAccessArgs: CustomStringConvertible {
         /// File for which we are changing a member's access.
-        open let file: String
+        public let file: String
         /// The member whose access we are changing.
-        open let member: Sharing.MemberSelector
+        public let member: Sharing.MemberSelector
         /// The new access level for the member.
-        open let accessLevel: Sharing.AccessLevel
+        public let accessLevel: Sharing.AccessLevel
         public init(file: String, member: Sharing.MemberSelector, accessLevel: Sharing.AccessLevel) {
             stringValidator(minLength: 1, pattern: "((/|id:).*|nspath:[0-9]+:.*)|ns:[0-9]+(/.*)?")(file)
             self.file = file
@@ -596,11 +596,11 @@ open class Sharing {
     /// Metadata for a shared link. This can be either a PathLinkMetadata or CollectionLinkMetadata.
     open class LinkMetadata: CustomStringConvertible {
         /// URL of the shared link.
-        open let url: String
+        public let url: String
         /// Who can access the link.
-        open let visibility: Sharing.Visibility
+        public let visibility: Sharing.Visibility
         /// Expiration time, if set. By default the link won't expire.
-        open let expires: Date?
+        public let expires: Date?
         public init(url: String, visibility: Sharing.Visibility, expires: Date? = nil) {
             stringValidator()(url)
             self.url = url
@@ -687,12 +687,12 @@ open class Sharing {
     /// The CreateSharedLinkArg struct
     open class CreateSharedLinkArg: CustomStringConvertible {
         /// The path to share.
-        open let path: String
+        public let path: String
         /// Whether to return a shortened URL.
-        open let shortUrl: Bool
+        public let shortUrl: Bool
         /// If it's okay to share a path that does not yet exist, set this to either file in PendingUploadMode or folder
         /// in PendingUploadMode to indicate whether to assume it's a file or folder.
-        open let pendingUpload: Sharing.PendingUploadMode?
+        public let pendingUpload: Sharing.PendingUploadMode?
         public init(path: String, shortUrl: Bool = false, pendingUpload: Sharing.PendingUploadMode? = nil) {
             stringValidator()(path)
             self.path = path
@@ -773,9 +773,9 @@ open class Sharing {
     /// The CreateSharedLinkWithSettingsArg struct
     open class CreateSharedLinkWithSettingsArg: CustomStringConvertible {
         /// The path to be shared by the shared link
-        open let path: String
+        public let path: String
         /// The requested settings for the newly created shared link
-        open let settings: Sharing.SharedLinkSettings?
+        public let settings: Sharing.SharedLinkSettings?
         public init(path: String, settings: Sharing.SharedLinkSettings? = nil) {
             stringValidator(pattern: "(/(.|[\\r\\n])*|id:.*)|(rev:[0-9a-f]{9,})|(ns:[0-9]+(/.*)?)")(path)
             self.path = path
@@ -1031,24 +1031,24 @@ open class Sharing {
     /// The metadata of a shared link
     open class SharedLinkMetadata: CustomStringConvertible {
         /// URL of the shared link.
-        open let url: String
+        public let url: String
         /// A unique identifier for the linked file.
-        open let id: String?
+        public let id: String?
         /// The linked file name (including extension). This never contains a slash.
-        open let name: String
+        public let name: String
         /// Expiration time, if set. By default the link won't expire.
-        open let expires: Date?
+        public let expires: Date?
         /// The lowercased full path in the user's Dropbox. This always starts with a slash. This field will only be
         /// present only if the linked file is in the authenticated user's  dropbox.
-        open let pathLower: String?
+        public let pathLower: String?
         /// The link's access permissions.
-        open let linkPermissions: Sharing.LinkPermissions
+        public let linkPermissions: Sharing.LinkPermissions
         /// The team membership information of the link's owner.  This field will only be present  if the link's owner
         /// is a team member.
-        open let teamMemberInfo: Sharing.TeamMemberInfo?
+        public let teamMemberInfo: Sharing.TeamMemberInfo?
         /// The team information of the content's owner. This field will only be present if the content's owner is a
         /// team member and the content's owner team is different from the link's owner team.
-        open let contentOwnerTeamInfo: Users.Team?
+        public let contentOwnerTeamInfo: Users.Team?
         public init(url: String, name: String, linkPermissions: Sharing.LinkPermissions, id: String? = nil, expires: Date? = nil, pathLower: String? = nil, teamMemberInfo: Sharing.TeamMemberInfo? = nil, contentOwnerTeamInfo: Users.Team? = nil) {
             stringValidator()(url)
             self.url = url
@@ -1126,14 +1126,14 @@ open class Sharing {
         /// The modification time set by the desktop client when the file was added to Dropbox. Since this time is not
         /// verified (the Dropbox server stores whatever the desktop client sends up), this should only be used for
         /// display purposes (such as sorting) and not, for example, to determine if a file has changed or not.
-        open let clientModified: Date
+        public let clientModified: Date
         /// The last time the file was modified on Dropbox.
-        open let serverModified: Date
+        public let serverModified: Date
         /// A unique identifier for the current revision of a file. This field is the same rev as elsewhere in the API
         /// and can be used to detect changes and avoid conflicts.
-        open let rev: String
+        public let rev: String
         /// The file size in bytes.
-        open let size: UInt64
+        public let size: UInt64
         public init(url: String, name: String, linkPermissions: Sharing.LinkPermissions, clientModified: Date, serverModified: Date, rev: String, size: UInt64, id: String? = nil, expires: Date? = nil, pathLower: String? = nil, teamMemberInfo: Sharing.TeamMemberInfo? = nil, contentOwnerTeamInfo: Users.Team? = nil) {
             self.clientModified = clientModified
             self.serverModified = serverModified
@@ -1297,9 +1297,9 @@ open class Sharing {
     /// Per-member result for removeFileMember2 or addFileMember or changeFileMemberAccess.
     open class FileMemberActionResult: CustomStringConvertible {
         /// One of specified input members.
-        open let member: Sharing.MemberSelector
+        public let member: Sharing.MemberSelector
         /// The outcome of the action on this member.
-        open let result: Sharing.FileMemberActionIndividualResult
+        public let result: Sharing.FileMemberActionIndividualResult
         public init(member: Sharing.MemberSelector, result: Sharing.FileMemberActionIndividualResult) {
             self.member = member
             self.result = result
@@ -1385,11 +1385,11 @@ open class Sharing {
     /// Whether the user is allowed to take the sharing action on the file.
     open class FilePermission: CustomStringConvertible {
         /// The action that the user may wish to take on the file.
-        open let action: Sharing.FileAction
+        public let action: Sharing.FileAction
         /// True if the user is allowed to take the action.
-        open let allow: Bool
+        public let allow: Bool
         /// The reason why the user is denied the permission. Not present if the action is allowed
-        open let reason: Sharing.PermissionDeniedReason?
+        public let reason: Sharing.PermissionDeniedReason?
         public init(action: Sharing.FileAction, allow: Bool, reason: Sharing.PermissionDeniedReason? = nil) {
             self.action = action
             self.allow = allow
@@ -1587,12 +1587,12 @@ open class Sharing {
     /// Whether the user is allowed to take the action on the shared folder.
     open class FolderPermission: CustomStringConvertible {
         /// The action that the user may wish to take on the folder.
-        open let action: Sharing.FolderAction
+        public let action: Sharing.FolderAction
         /// True if the user is allowed to take the action.
-        open let allow: Bool
+        public let allow: Bool
         /// The reason why the user is denied the permission. Not present if the action is allowed, or if no reason is
         /// available.
-        open let reason: Sharing.PermissionDeniedReason?
+        public let reason: Sharing.PermissionDeniedReason?
         public init(action: Sharing.FolderAction, allow: Bool, reason: Sharing.PermissionDeniedReason? = nil) {
             self.action = action
             self.allow = allow
@@ -1629,15 +1629,15 @@ open class Sharing {
     open class FolderPolicy: CustomStringConvertible {
         /// Who can be a member of this shared folder, as set on the folder itself. The effective policy may differ from
         /// this value if the team-wide policy is more restrictive. Present only if the folder is owned by a team.
-        open let memberPolicy: Sharing.MemberPolicy?
+        public let memberPolicy: Sharing.MemberPolicy?
         /// Who can be a member of this shared folder, taking into account both the folder and the team-wide policy.
         /// This value may differ from that of member_policy if the team-wide policy is more restrictive than the folder
         /// policy. Present only if the folder is owned by a team.
-        open let resolvedMemberPolicy: Sharing.MemberPolicy?
+        public let resolvedMemberPolicy: Sharing.MemberPolicy?
         /// Who can add and remove members from this shared folder.
-        open let aclUpdatePolicy: Sharing.AclUpdatePolicy
+        public let aclUpdatePolicy: Sharing.AclUpdatePolicy
         /// Who links can be shared with.
-        open let sharedLinkPolicy: Sharing.SharedLinkPolicy
+        public let sharedLinkPolicy: Sharing.SharedLinkPolicy
         public init(aclUpdatePolicy: Sharing.AclUpdatePolicy, sharedLinkPolicy: Sharing.SharedLinkPolicy, memberPolicy: Sharing.MemberPolicy? = nil, resolvedMemberPolicy: Sharing.MemberPolicy? = nil) {
             self.memberPolicy = memberPolicy
             self.resolvedMemberPolicy = resolvedMemberPolicy
@@ -1676,9 +1676,9 @@ open class Sharing {
     /// Arguments of getFileMetadata
     open class GetFileMetadataArg: CustomStringConvertible {
         /// The file to query.
-        open let file: String
+        public let file: String
         /// File actions to query.
-        open let actions: Array<Sharing.FileAction>?
+        public let actions: Array<Sharing.FileAction>?
         public init(file: String, actions: Array<Sharing.FileAction>? = nil) {
             stringValidator(minLength: 1, pattern: "((/|id:).*|nspath:[0-9]+:.*)|ns:[0-9]+(/.*)?")(file)
             self.file = file
@@ -1712,9 +1712,9 @@ open class Sharing {
     /// Arguments of getFileMetadataBatch
     open class GetFileMetadataBatchArg: CustomStringConvertible {
         /// The files to query.
-        open let files: Array<String>
+        public let files: Array<String>
         /// File actions to query.
-        open let actions: Array<Sharing.FileAction>?
+        public let actions: Array<Sharing.FileAction>?
         public init(files: Array<String>, actions: Array<Sharing.FileAction>? = nil) {
             arrayValidator(maxItems: 100, itemValidator: stringValidator(minLength: 1, pattern: "((/|id:).*|nspath:[0-9]+:.*)|ns:[0-9]+(/.*)?"))(files)
             self.files = files
@@ -1748,9 +1748,9 @@ open class Sharing {
     /// Per file results of getFileMetadataBatch
     open class GetFileMetadataBatchResult: CustomStringConvertible {
         /// This is the input file identifier corresponding to one of files in GetFileMetadataBatchArg.
-        open let file: String
+        public let file: String
         /// The result for this particular file
-        open let result: Sharing.GetFileMetadataIndividualResult
+        public let result: Sharing.GetFileMetadataIndividualResult
         public init(file: String, result: Sharing.GetFileMetadataIndividualResult) {
             stringValidator(minLength: 1, pattern: "((/|id:).*|nspath:[0-9]+:.*)|ns:[0-9]+(/.*)?")(file)
             self.file = file
@@ -1890,10 +1890,10 @@ open class Sharing {
     /// The GetMetadataArgs struct
     open class GetMetadataArgs: CustomStringConvertible {
         /// The ID for the shared folder.
-        open let sharedFolderId: String
+        public let sharedFolderId: String
         /// This is a list indicating whether the returned folder data will include a boolean value  allow in
         /// FolderPermission that describes whether the current user can perform the  FolderAction on the folder.
-        open let actions: Array<Sharing.FolderAction>?
+        public let actions: Array<Sharing.FolderAction>?
         public init(sharedFolderId: String, actions: Array<Sharing.FolderAction>? = nil) {
             stringValidator(pattern: "[-_0-9a-zA-Z:]+")(sharedFolderId)
             self.sharedFolderId = sharedFolderId
@@ -2037,12 +2037,12 @@ open class Sharing {
     /// The GetSharedLinkMetadataArg struct
     open class GetSharedLinkMetadataArg: CustomStringConvertible {
         /// URL of the shared link.
-        open let url: String
+        public let url: String
         /// If the shared link is to a folder, this parameter can be used to retrieve the metadata for a specific file
         /// or sub-folder in this folder. A relative path should be used.
-        open let path: String?
+        public let path: String?
         /// If the shared link has a password, this parameter can be used.
-        open let linkPassword: String?
+        public let linkPassword: String?
         public init(url: String, path: String? = nil, linkPassword: String? = nil) {
             stringValidator()(url)
             self.url = url
@@ -2081,7 +2081,7 @@ open class Sharing {
     /// The GetSharedLinksArg struct
     open class GetSharedLinksArg: CustomStringConvertible {
         /// See getSharedLinks description.
-        open let path: String?
+        public let path: String?
         public init(path: String? = nil) {
             nullableValidator(stringValidator())(path)
             self.path = path
@@ -2156,7 +2156,7 @@ open class Sharing {
     /// The GetSharedLinksResult struct
     open class GetSharedLinksResult: CustomStringConvertible {
         /// Shared links applicable to the path argument.
-        open let links: Array<Sharing.LinkMetadata>
+        public let links: Array<Sharing.LinkMetadata>
         public init(links: Array<Sharing.LinkMetadata>) {
             self.links = links
         }
@@ -2187,11 +2187,11 @@ open class Sharing {
     /// shared folder.
     open class GroupInfo: TeamCommon.GroupSummary {
         /// The type of group.
-        open let groupType: TeamCommon.GroupType
+        public let groupType: TeamCommon.GroupType
         /// If the current user is an owner of the group.
-        open let isOwner: Bool
+        public let isOwner: Bool
         /// If the group is owned by the current user's team.
-        open let sameTeam: Bool
+        public let sameTeam: Bool
         public init(groupName: String, groupId: String, groupManagementType: TeamCommon.GroupManagementType, groupType: TeamCommon.GroupType, isOwner: Bool, sameTeam: Bool, groupExternalId: String? = nil, memberCount: UInt32? = nil) {
             self.groupType = groupType
             self.isOwner = isOwner
@@ -2238,14 +2238,14 @@ open class Sharing {
     /// The information about a member of the shared content.
     open class MembershipInfo: CustomStringConvertible {
         /// The access type for this member.
-        open let accessType: Sharing.AccessLevel
+        public let accessType: Sharing.AccessLevel
         /// The permissions that requesting user has on this member. The set of permissions corresponds to the
         /// MemberActions in the request.
-        open let permissions: Array<Sharing.MemberPermission>?
+        public let permissions: Array<Sharing.MemberPermission>?
         /// Suggested name initials for a member.
-        open let initials: String?
+        public let initials: String?
         /// True if the member has access from a parent folder.
-        open let isInherited: Bool
+        public let isInherited: Bool
         public init(accessType: Sharing.AccessLevel, permissions: Array<Sharing.MemberPermission>? = nil, initials: String? = nil, isInherited: Bool = false) {
             self.accessType = accessType
             self.permissions = permissions
@@ -2285,7 +2285,7 @@ open class Sharing {
     /// The information about a group member of the shared content.
     open class GroupMembershipInfo: Sharing.MembershipInfo {
         /// The information about the membership group.
-        open let group: Sharing.GroupInfo
+        public let group: Sharing.GroupInfo
         public init(accessType: Sharing.AccessLevel, group: Sharing.GroupInfo, permissions: Array<Sharing.MemberPermission>? = nil, initials: String? = nil, isInherited: Bool = false) {
             self.group = group
             super.init(accessType: accessType, permissions: permissions, initials: initials, isInherited: isInherited)
@@ -2324,11 +2324,11 @@ open class Sharing {
     /// The InsufficientQuotaAmounts struct
     open class InsufficientQuotaAmounts: CustomStringConvertible {
         /// The amount of space needed to add the item (the size of the item).
-        open let spaceNeeded: UInt64
+        public let spaceNeeded: UInt64
         /// The amount of extra space needed to add the item.
-        open let spaceShortage: UInt64
+        public let spaceShortage: UInt64
         /// The amount of space left in the user's Dropbox, less than space_needed.
-        open let spaceLeft: UInt64
+        public let spaceLeft: UInt64
         public init(spaceNeeded: UInt64, spaceShortage: UInt64, spaceLeft: UInt64) {
             comparableValidator()(spaceNeeded)
             self.spaceNeeded = spaceNeeded
@@ -2411,9 +2411,9 @@ open class Sharing {
     /// Information about an invited member of a shared content.
     open class InviteeMembershipInfo: Sharing.MembershipInfo {
         /// Recipient of the invitation.
-        open let invitee: Sharing.InviteeInfo
+        public let invitee: Sharing.InviteeInfo
         /// The user this invitation is tied to, if available.
-        open let user: Sharing.UserInfo?
+        public let user: Sharing.UserInfo?
         public init(accessType: Sharing.AccessLevel, invitee: Sharing.InviteeInfo, permissions: Array<Sharing.MemberPermission>? = nil, initials: String? = nil, isInherited: Bool = false, user: Sharing.UserInfo? = nil) {
             self.invitee = invitee
             self.user = user
@@ -2572,15 +2572,15 @@ open class Sharing {
         /// link's owner is part of a team) and the shared folder (in case the linked file is part of a shared folder).
         /// This field is shown only if the caller has access to this info (the link's owner always has access to this
         /// data).
-        open let resolvedVisibility: Sharing.ResolvedVisibility?
+        public let resolvedVisibility: Sharing.ResolvedVisibility?
         /// The shared link's requested visibility. This can be overridden by the team and shared folder policies. The
         /// final visibility, after considering these policies, can be found in resolvedVisibility. This is shown only
         /// if the caller is the link's owner.
-        open let requestedVisibility: Sharing.RequestedVisibility?
+        public let requestedVisibility: Sharing.RequestedVisibility?
         /// Whether the caller can revoke the shared link
-        open let canRevoke: Bool
+        public let canRevoke: Bool
         /// The failure reason for revoking the link. This field will only be present if the canRevoke is false.
-        open let revokeFailureReason: Sharing.SharedLinkAccessFailureReason?
+        public let revokeFailureReason: Sharing.SharedLinkAccessFailureReason?
         public init(canRevoke: Bool, resolvedVisibility: Sharing.ResolvedVisibility? = nil, requestedVisibility: Sharing.RequestedVisibility? = nil, revokeFailureReason: Sharing.SharedLinkAccessFailureReason? = nil) {
             self.resolvedVisibility = resolvedVisibility
             self.requestedVisibility = requestedVisibility
@@ -2619,13 +2619,13 @@ open class Sharing {
     /// Arguments for listFileMembers.
     open class ListFileMembersArg: CustomStringConvertible {
         /// The file for which you want to see members.
-        open let file: String
+        public let file: String
         /// The actions for which to return permissions on a member
-        open let actions: Array<Sharing.MemberAction>?
+        public let actions: Array<Sharing.MemberAction>?
         /// Whether to include members who only have access from a parent shared folder.
-        open let includeInherited: Bool
+        public let includeInherited: Bool
         /// Number of members to return max per query. Defaults to 100 if no limit is specified.
-        open let limit: UInt32
+        public let limit: UInt32
         public init(file: String, actions: Array<Sharing.MemberAction>? = nil, includeInherited: Bool = true, limit: UInt32 = 100) {
             stringValidator(minLength: 1, pattern: "((/|id:).*|nspath:[0-9]+:.*)|ns:[0-9]+(/.*)?")(file)
             self.file = file
@@ -2666,9 +2666,9 @@ open class Sharing {
     /// Arguments for listFileMembersBatch.
     open class ListFileMembersBatchArg: CustomStringConvertible {
         /// Files for which to return members.
-        open let files: Array<String>
+        public let files: Array<String>
         /// Number of members to return max per query. Defaults to 10 if no limit is specified.
-        open let limit: UInt32
+        public let limit: UInt32
         public init(files: Array<String>, limit: UInt32 = 10) {
             arrayValidator(maxItems: 100, itemValidator: stringValidator(minLength: 1, pattern: "((/|id:).*|nspath:[0-9]+:.*)|ns:[0-9]+(/.*)?"))(files)
             self.files = files
@@ -2703,9 +2703,9 @@ open class Sharing {
     /// Per-file result for listFileMembersBatch.
     open class ListFileMembersBatchResult: CustomStringConvertible {
         /// This is the input file identifier, whether an ID or a path.
-        open let file: String
+        public let file: String
         /// The result for this particular file
-        open let result: Sharing.ListFileMembersIndividualResult
+        public let result: Sharing.ListFileMembersIndividualResult
         public init(file: String, result: Sharing.ListFileMembersIndividualResult) {
             stringValidator(minLength: 1, pattern: "((/|id:).*|nspath:[0-9]+:.*)|ns:[0-9]+(/.*)?")(file)
             self.file = file
@@ -2739,7 +2739,7 @@ open class Sharing {
     /// Arguments for listFileMembersContinue.
     open class ListFileMembersContinueArg: CustomStringConvertible {
         /// The cursor returned by your last call to listFileMembers, listFileMembersContinue, or listFileMembersBatch.
-        open let cursor: String
+        public let cursor: String
         public init(cursor: String) {
             stringValidator()(cursor)
             self.cursor = cursor
@@ -2831,9 +2831,9 @@ open class Sharing {
     /// The ListFileMembersCountResult struct
     open class ListFileMembersCountResult: CustomStringConvertible {
         /// A list of members on this file.
-        open let members: Sharing.SharedFileMembers
+        public let members: Sharing.SharedFileMembers
         /// The number of members on this file. This does not include inherited members
-        open let memberCount: UInt32
+        public let memberCount: UInt32
         public init(members: Sharing.SharedFileMembers, memberCount: UInt32) {
             self.members = members
             comparableValidator()(memberCount)
@@ -2973,9 +2973,9 @@ open class Sharing {
     /// Arguments for listReceivedFiles.
     open class ListFilesArg: CustomStringConvertible {
         /// Number of files to return max per query. Defaults to 100 if no limit is specified.
-        open let limit: UInt32
+        public let limit: UInt32
         /// File actions to query.
-        open let actions: Array<Sharing.FileAction>?
+        public let actions: Array<Sharing.FileAction>?
         public init(limit: UInt32 = 100, actions: Array<Sharing.FileAction>? = nil) {
             comparableValidator(minValue: 1, maxValue: 300)(limit)
             self.limit = limit
@@ -3009,7 +3009,7 @@ open class Sharing {
     /// Arguments for listReceivedFilesContinue.
     open class ListFilesContinueArg: CustomStringConvertible {
         /// Cursor in cursor in ListFilesResult
-        open let cursor: String
+        public let cursor: String
         public init(cursor: String) {
             stringValidator()(cursor)
             self.cursor = cursor
@@ -3092,9 +3092,9 @@ open class Sharing {
     /// Success results for listReceivedFiles.
     open class ListFilesResult: CustomStringConvertible {
         /// Information about the files shared with current user.
-        open let entries: Array<Sharing.SharedFileMetadata>
+        public let entries: Array<Sharing.SharedFileMetadata>
         /// Cursor used to obtain additional shared files.
-        open let cursor: String?
+        public let cursor: String?
         public init(entries: Array<Sharing.SharedFileMetadata>, cursor: String? = nil) {
             self.entries = entries
             nullableValidator(stringValidator())(cursor)
@@ -3129,9 +3129,9 @@ open class Sharing {
     open class ListFolderMembersCursorArg: CustomStringConvertible {
         /// This is a list indicating whether each returned member will include a boolean value allow in
         /// MemberPermission that describes whether the current user can perform the MemberAction on the member.
-        open let actions: Array<Sharing.MemberAction>?
+        public let actions: Array<Sharing.MemberAction>?
         /// The maximum number of results that include members, groups and invitees to return per request.
-        open let limit: UInt32
+        public let limit: UInt32
         public init(actions: Array<Sharing.MemberAction>? = nil, limit: UInt32 = 1000) {
             self.actions = actions
             comparableValidator(minValue: 1, maxValue: 1000)(limit)
@@ -3165,7 +3165,7 @@ open class Sharing {
     /// The ListFolderMembersArgs struct
     open class ListFolderMembersArgs: Sharing.ListFolderMembersCursorArg {
         /// The ID for the shared folder.
-        open let sharedFolderId: String
+        public let sharedFolderId: String
         public init(sharedFolderId: String, actions: Array<Sharing.MemberAction>? = nil, limit: UInt32 = 1000) {
             stringValidator(pattern: "[-_0-9a-zA-Z:]+")(sharedFolderId)
             self.sharedFolderId = sharedFolderId
@@ -3201,7 +3201,7 @@ open class Sharing {
     /// The ListFolderMembersContinueArg struct
     open class ListFolderMembersContinueArg: CustomStringConvertible {
         /// The cursor returned by your last call to listFolderMembers or listFolderMembersContinue.
-        open let cursor: String
+        public let cursor: String
         public init(cursor: String) {
             stringValidator()(cursor)
             self.cursor = cursor
@@ -3284,10 +3284,10 @@ open class Sharing {
     /// The ListFoldersArgs struct
     open class ListFoldersArgs: CustomStringConvertible {
         /// The maximum number of results to return per request.
-        open let limit: UInt32
+        public let limit: UInt32
         /// This is a list indicating whether each returned folder data entry will include a boolean field allow in
         /// FolderPermission that describes whether the current user can perform the `FolderAction` on the folder.
-        open let actions: Array<Sharing.FolderAction>?
+        public let actions: Array<Sharing.FolderAction>?
         public init(limit: UInt32 = 1000, actions: Array<Sharing.FolderAction>? = nil) {
             comparableValidator(minValue: 1, maxValue: 1000)(limit)
             self.limit = limit
@@ -3321,7 +3321,7 @@ open class Sharing {
     /// The ListFoldersContinueArg struct
     open class ListFoldersContinueArg: CustomStringConvertible {
         /// The cursor returned by the previous API call specified in the endpoint description.
-        open let cursor: String
+        public let cursor: String
         public init(cursor: String) {
             stringValidator()(cursor)
             self.cursor = cursor
@@ -3396,11 +3396,11 @@ open class Sharing {
     /// folders can be identified by the absence of pathLower in SharedFolderMetadata.
     open class ListFoldersResult: CustomStringConvertible {
         /// List of all shared folders the authenticated user has access to.
-        open let entries: Array<Sharing.SharedFolderMetadata>
+        public let entries: Array<Sharing.SharedFolderMetadata>
         /// Present if there are additional shared folders that have not been returned yet. Pass the cursor into the
         /// corresponding continue endpoint (either listFoldersContinue or listMountableFoldersContinue) to list
         /// additional folders.
-        open let cursor: String?
+        public let cursor: String?
         public init(entries: Array<Sharing.SharedFolderMetadata>, cursor: String? = nil) {
             self.entries = entries
             nullableValidator(stringValidator())(cursor)
@@ -3434,11 +3434,11 @@ open class Sharing {
     /// The ListSharedLinksArg struct
     open class ListSharedLinksArg: CustomStringConvertible {
         /// See listSharedLinks description.
-        open let path: String?
+        public let path: String?
         /// The cursor returned by your last call to listSharedLinks.
-        open let cursor: String?
+        public let cursor: String?
         /// See listSharedLinks description.
-        open let directOnly: Bool?
+        public let directOnly: Bool?
         public init(path: String? = nil, cursor: String? = nil, directOnly: Bool? = nil) {
             nullableValidator(stringValidator(pattern: "(/(.|[\\r\\n])*|id:.*)|(rev:[0-9a-f]{9,})|(ns:[0-9]+(/.*)?)"))(path)
             self.path = path
@@ -3528,13 +3528,13 @@ open class Sharing {
     /// The ListSharedLinksResult struct
     open class ListSharedLinksResult: CustomStringConvertible {
         /// Shared links applicable to the path argument.
-        open let links: Array<Sharing.SharedLinkMetadata>
+        public let links: Array<Sharing.SharedLinkMetadata>
         /// Is true if there are additional shared links that have not been returned yet. Pass the cursor into
         /// listSharedLinks to retrieve them.
-        open let hasMore: Bool
+        public let hasMore: Bool
         /// Pass the cursor into listSharedLinks to obtain the additional links. Cursor is returned only if no path is
         /// given.
-        open let cursor: String?
+        public let cursor: String?
         public init(links: Array<Sharing.SharedLinkMetadata>, hasMore: Bool, cursor: String? = nil) {
             self.links = links
             self.hasMore = hasMore
@@ -3571,12 +3571,12 @@ open class Sharing {
     /// Contains information about a member's access level to content after an operation.
     open class MemberAccessLevelResult: CustomStringConvertible {
         /// The member still has this level of access to the content through a parent folder.
-        open let accessLevel: Sharing.AccessLevel?
+        public let accessLevel: Sharing.AccessLevel?
         /// A localized string with additional information about why the user has this access level to the content.
-        open let warning: String?
+        public let warning: String?
         /// The parent folders that a member has access to. The field is present if the user has access to the first
         /// parent folder where the member gains access.
-        open let accessDetails: Array<Sharing.ParentFolderAccessInfo>?
+        public let accessDetails: Array<Sharing.ParentFolderAccessInfo>?
         public init(accessLevel: Sharing.AccessLevel? = nil, warning: String? = nil, accessDetails: Array<Sharing.ParentFolderAccessInfo>? = nil) {
             self.accessLevel = accessLevel
             nullableValidator(stringValidator())(warning)
@@ -3696,11 +3696,11 @@ open class Sharing {
     /// Whether the user is allowed to take the action on the associated member.
     open class MemberPermission: CustomStringConvertible {
         /// The action that the user may wish to take on the member.
-        open let action: Sharing.MemberAction
+        public let action: Sharing.MemberAction
         /// True if the user is allowed to take the action.
-        open let allow: Bool
+        public let allow: Bool
         /// The reason why the user is denied the permission. Not present if the action is allowed
-        open let reason: Sharing.PermissionDeniedReason?
+        public let reason: Sharing.PermissionDeniedReason?
         public init(action: Sharing.MemberAction, allow: Bool, reason: Sharing.PermissionDeniedReason? = nil) {
             self.action = action
             self.allow = allow
@@ -3840,11 +3840,11 @@ open class Sharing {
     /// The ModifySharedLinkSettingsArgs struct
     open class ModifySharedLinkSettingsArgs: CustomStringConvertible {
         /// URL of the shared link to change its settings
-        open let url: String
+        public let url: String
         /// Set of settings for the shared link.
-        open let settings: Sharing.SharedLinkSettings
+        public let settings: Sharing.SharedLinkSettings
         /// If set to true, removes the expiration of the shared link.
-        open let removeExpiration: Bool
+        public let removeExpiration: Bool
         public init(url: String, settings: Sharing.SharedLinkSettings, removeExpiration: Bool = false) {
             stringValidator()(url)
             self.url = url
@@ -3949,7 +3949,7 @@ open class Sharing {
     /// The MountFolderArg struct
     open class MountFolderArg: CustomStringConvertible {
         /// The ID of the shared folder to mount.
-        open let sharedFolderId: String
+        public let sharedFolderId: String
         public init(sharedFolderId: String) {
             stringValidator(pattern: "[-_0-9a-zA-Z:]+")(sharedFolderId)
             self.sharedFolderId = sharedFolderId
@@ -4066,11 +4066,11 @@ open class Sharing {
     /// Contains information about a parent folder that a member has access to.
     open class ParentFolderAccessInfo: CustomStringConvertible {
         /// Display name for the folder.
-        open let folderName: String
+        public let folderName: String
         /// The identifier of the parent shared folder.
-        open let sharedFolderId: String
+        public let sharedFolderId: String
         /// The user's permissions for the parent shared folder.
-        open let permissions: Array<Sharing.MemberPermission>
+        public let permissions: Array<Sharing.MemberPermission>
         public init(folderName: String, sharedFolderId: String, permissions: Array<Sharing.MemberPermission>) {
             stringValidator()(folderName)
             self.folderName = folderName
@@ -4108,7 +4108,7 @@ open class Sharing {
     /// Metadata for a path-based shared link.
     open class PathLinkMetadata: Sharing.LinkMetadata {
         /// Path in user's Dropbox.
-        open let path: String
+        public let path: String
         public init(url: String, visibility: Sharing.Visibility, path: String, expires: Date? = nil) {
             stringValidator()(path)
             self.path = path
@@ -4280,7 +4280,7 @@ open class Sharing {
     /// The RelinquishFileMembershipArg struct
     open class RelinquishFileMembershipArg: CustomStringConvertible {
         /// The path or id for the file.
-        open let file: String
+        public let file: String
         public init(file: String) {
             stringValidator(minLength: 1, pattern: "((/|id:).*|nspath:[0-9]+:.*)|ns:[0-9]+(/.*)?")(file)
             self.file = file
@@ -4372,9 +4372,9 @@ open class Sharing {
     /// The RelinquishFolderMembershipArg struct
     open class RelinquishFolderMembershipArg: CustomStringConvertible {
         /// The ID for the shared folder.
-        open let sharedFolderId: String
+        public let sharedFolderId: String
         /// Keep a copy of the folder's contents upon relinquishing membership.
-        open let leaveACopy: Bool
+        public let leaveACopy: Bool
         public init(sharedFolderId: String, leaveACopy: Bool = false) {
             stringValidator(pattern: "[-_0-9a-zA-Z:]+")(sharedFolderId)
             self.sharedFolderId = sharedFolderId
@@ -4494,10 +4494,10 @@ open class Sharing {
     /// Arguments for removeFileMember2.
     open class RemoveFileMemberArg: CustomStringConvertible {
         /// File from which to remove members.
-        open let file: String
+        public let file: String
         /// Member to remove from this file. Note that even if an email is specified, it may result in the removal of a
         /// user (not an invitee) if the user's main account corresponds to that email address.
-        open let member: Sharing.MemberSelector
+        public let member: Sharing.MemberSelector
         public init(file: String, member: Sharing.MemberSelector) {
             stringValidator(minLength: 1, pattern: "((/|id:).*|nspath:[0-9]+:.*)|ns:[0-9]+(/.*)?")(file)
             self.file = file
@@ -4594,12 +4594,12 @@ open class Sharing {
     /// The RemoveFolderMemberArg struct
     open class RemoveFolderMemberArg: CustomStringConvertible {
         /// The ID for the shared folder.
-        open let sharedFolderId: String
+        public let sharedFolderId: String
         /// The member to remove from the folder.
-        open let member: Sharing.MemberSelector
+        public let member: Sharing.MemberSelector
         /// If true, the removed user will keep their copy of the folder after it's unshared, assuming it was mounted.
         /// Otherwise, it will be removed from their Dropbox. Also, this must be set to false when kicking a group.
-        open let leaveACopy: Bool
+        public let leaveACopy: Bool
         public init(sharedFolderId: String, member: Sharing.MemberSelector, leaveACopy: Bool) {
             stringValidator(pattern: "[-_0-9a-zA-Z:]+")(sharedFolderId)
             self.sharedFolderId = sharedFolderId
@@ -4906,7 +4906,7 @@ open class Sharing {
     /// The RevokeSharedLinkArg struct
     open class RevokeSharedLinkArg: CustomStringConvertible {
         /// URL of the shared link.
-        open let url: String
+        public let url: String
         public init(url: String) {
             stringValidator()(url)
             self.url = url
@@ -4996,16 +4996,16 @@ open class Sharing {
     /// The ShareFolderArg struct
     open class ShareFolderArg: CustomStringConvertible {
         /// The path to the folder to share. If it does not exist, then a new one is created.
-        open let path: String
+        public let path: String
         /// Who can be a member of this shared folder. Only applicable if the current user is on a team.
-        open let memberPolicy: Sharing.MemberPolicy
+        public let memberPolicy: Sharing.MemberPolicy
         /// Who can add and remove members of this shared folder.
-        open let aclUpdatePolicy: Sharing.AclUpdatePolicy
+        public let aclUpdatePolicy: Sharing.AclUpdatePolicy
         /// The policy to apply to shared links created for content inside this shared folder.  The current user must be
         /// on a team to set this policy to members in SharedLinkPolicy.
-        open let sharedLinkPolicy: Sharing.SharedLinkPolicy
+        public let sharedLinkPolicy: Sharing.SharedLinkPolicy
         /// Whether to force the share to happen asynchronously.
-        open let forceAsync: Bool
+        public let forceAsync: Bool
         public init(path: String, memberPolicy: Sharing.MemberPolicy = .anyone, aclUpdatePolicy: Sharing.AclUpdatePolicy = .owner, sharedLinkPolicy: Sharing.SharedLinkPolicy = .anyone, forceAsync: Bool = false) {
             stringValidator(pattern: "(/(.|[\\r\\n])*)|(ns:[0-9]+(/.*)?)")(path)
             self.path = path
@@ -5441,14 +5441,14 @@ open class Sharing {
     /// listFileMembersContinue, and used as part of the results for listFileMembersBatch.
     open class SharedFileMembers: CustomStringConvertible {
         /// The list of user members of the shared file.
-        open let users: Array<Sharing.UserMembershipInfo>
+        public let users: Array<Sharing.UserMembershipInfo>
         /// The list of group members of the shared file.
-        open let groups: Array<Sharing.GroupMembershipInfo>
+        public let groups: Array<Sharing.GroupMembershipInfo>
         /// The list of invited members of a file, but have not logged in and claimed this.
-        open let invitees: Array<Sharing.InviteeMembershipInfo>
+        public let invitees: Array<Sharing.InviteeMembershipInfo>
         /// Present if there are additional shared file members that have not been returned yet. Pass the cursor into
         /// listFileMembersContinue to list additional members.
-        open let cursor: String?
+        public let cursor: String?
         public init(users: Array<Sharing.UserMembershipInfo>, groups: Array<Sharing.GroupMembershipInfo>, invitees: Array<Sharing.InviteeMembershipInfo>, cursor: String? = nil) {
             self.users = users
             self.groups = groups
@@ -5488,31 +5488,31 @@ open class Sharing {
     /// Properties of the shared file.
     open class SharedFileMetadata: CustomStringConvertible {
         /// Policies governing this shared file.
-        open let policy: Sharing.FolderPolicy
+        public let policy: Sharing.FolderPolicy
         /// The sharing permissions that requesting user has on this file. This corresponds to the entries given in
         /// actions in GetFileMetadataBatchArg or actions in GetFileMetadataArg.
-        open let permissions: Array<Sharing.FilePermission>?
+        public let permissions: Array<Sharing.FilePermission>?
         /// The team that owns the file. This field is not present if the file is not owned by a team.
-        open let ownerTeam: Users.Team?
+        public let ownerTeam: Users.Team?
         /// The ID of the parent shared folder. This field is present only if the file is contained within a shared
         /// folder.
-        open let parentSharedFolderId: String?
+        public let parentSharedFolderId: String?
         /// URL for displaying a web preview of the shared file.
-        open let previewUrl: String
+        public let previewUrl: String
         /// The lower-case full path of this file. Absent for unmounted files.
-        open let pathLower: String?
+        public let pathLower: String?
         /// The cased path to be used for display purposes only. In rare instances the casing will not correctly match
         /// the user's filesystem, but this behavior will match the path provided in the Core API v1. Absent for
         /// unmounted files.
-        open let pathDisplay: String?
+        public let pathDisplay: String?
         /// The name of this file.
-        open let name: String
+        public let name: String
         /// The ID of the file.
-        open let id: String
+        public let id: String
         /// Timestamp indicating when the current user was invited to this shared file. If the user was not invited to
         /// the shared file, the timestamp will indicate when the user was invited to the parent shared folder. This
         /// value may be absent.
-        open let timeInvited: Date?
+        public let timeInvited: Date?
         public init(policy: Sharing.FolderPolicy, previewUrl: String, name: String, id: String, permissions: Array<Sharing.FilePermission>? = nil, ownerTeam: Users.Team? = nil, parentSharedFolderId: String? = nil, pathLower: String? = nil, pathDisplay: String? = nil, timeInvited: Date? = nil) {
             self.policy = policy
             self.permissions = permissions
@@ -5702,14 +5702,14 @@ open class Sharing {
     /// Shared folder user and group membership.
     open class SharedFolderMembers: CustomStringConvertible {
         /// The list of user members of the shared folder.
-        open let users: Array<Sharing.UserMembershipInfo>
+        public let users: Array<Sharing.UserMembershipInfo>
         /// The list of group members of the shared folder.
-        open let groups: Array<Sharing.GroupMembershipInfo>
+        public let groups: Array<Sharing.GroupMembershipInfo>
         /// The list of invitees to the shared folder.
-        open let invitees: Array<Sharing.InviteeMembershipInfo>
+        public let invitees: Array<Sharing.InviteeMembershipInfo>
         /// Present if there are additional shared folder members that have not been returned yet. Pass the cursor into
         /// listFolderMembersContinue to list additional members.
-        open let cursor: String?
+        public let cursor: String?
         public init(users: Array<Sharing.UserMembershipInfo>, groups: Array<Sharing.GroupMembershipInfo>, invitees: Array<Sharing.InviteeMembershipInfo>, cursor: String? = nil) {
             self.users = users
             self.groups = groups
@@ -5749,16 +5749,16 @@ open class Sharing {
     /// Properties of the shared folder.
     open class SharedFolderMetadataBase: CustomStringConvertible {
         /// The current user's access level for this shared folder.
-        open let accessType: Sharing.AccessLevel
+        public let accessType: Sharing.AccessLevel
         /// Whether this folder is a team folder https://www.dropbox.com/en/help/986.
-        open let isTeamFolder: Bool
+        public let isTeamFolder: Bool
         /// Policies governing this shared folder.
-        open let policy: Sharing.FolderPolicy
+        public let policy: Sharing.FolderPolicy
         /// The team that owns the folder. This field is not present if the folder is not owned by a team.
-        open let ownerTeam: Users.Team?
+        public let ownerTeam: Users.Team?
         /// The ID of the parent shared folder. This field is present only if the folder is contained within another
         /// shared folder.
-        open let parentSharedFolderId: String?
+        public let parentSharedFolderId: String?
         public init(accessType: Sharing.AccessLevel, isTeamFolder: Bool, policy: Sharing.FolderPolicy, ownerTeam: Users.Team? = nil, parentSharedFolderId: String? = nil) {
             self.accessType = accessType
             self.isTeamFolder = isTeamFolder
@@ -5801,18 +5801,18 @@ open class Sharing {
     /// The metadata which includes basic information about the shared folder.
     open class SharedFolderMetadata: Sharing.SharedFolderMetadataBase {
         /// The lower-cased full path of this shared folder. Absent for unmounted folders.
-        open let pathLower: String?
+        public let pathLower: String?
         /// The name of the this shared folder.
-        open let name: String
+        public let name: String
         /// The ID of the shared folder.
-        open let sharedFolderId: String
+        public let sharedFolderId: String
         /// Actions the current user may perform on the folder and its contents. The set of permissions corresponds to
         /// the FolderActions in the request.
-        open let permissions: Array<Sharing.FolderPermission>?
+        public let permissions: Array<Sharing.FolderPermission>?
         /// Timestamp indicating when the current user was invited to this shared folder.
-        open let timeInvited: Date
+        public let timeInvited: Date
         /// URL for displaying a web preview of the shared folder.
-        open let previewUrl: String
+        public let previewUrl: String
         public init(accessType: Sharing.AccessLevel, isTeamFolder: Bool, policy: Sharing.FolderPolicy, name: String, sharedFolderId: String, timeInvited: Date, previewUrl: String, ownerTeam: Users.Team? = nil, parentSharedFolderId: String? = nil, pathLower: String? = nil, permissions: Array<Sharing.FolderPermission>? = nil) {
             nullableValidator(stringValidator())(pathLower)
             self.pathLower = pathLower
@@ -5998,12 +5998,12 @@ open class Sharing {
     /// The SharedLinkSettings struct
     open class SharedLinkSettings: CustomStringConvertible {
         /// The requested access for this shared link.
-        open let requestedVisibility: Sharing.RequestedVisibility?
+        public let requestedVisibility: Sharing.RequestedVisibility?
         /// If requestedVisibility is password in RequestedVisibility this is needed to specify the password to access
         /// the link.
-        open let linkPassword: String?
+        public let linkPassword: String?
         /// Expiration time of the shared link. By default the link won't expire.
-        open let expires: Date?
+        public let expires: Date?
         public init(requestedVisibility: Sharing.RequestedVisibility? = nil, linkPassword: String? = nil, expires: Date? = nil) {
             self.requestedVisibility = requestedVisibility
             nullableValidator(stringValidator())(linkPassword)
@@ -6205,12 +6205,12 @@ open class Sharing {
     /// Information about a team member.
     open class TeamMemberInfo: CustomStringConvertible {
         /// Information about the member's team
-        open let teamInfo: Users.Team
+        public let teamInfo: Users.Team
         /// The display name of the user.
-        open let displayName: String
+        public let displayName: String
         /// ID of user as a member of a team. This field will only be present if the member is in the same team as
         /// current user.
-        open let memberId: String?
+        public let memberId: String?
         public init(teamInfo: Users.Team, displayName: String, memberId: String? = nil) {
             self.teamInfo = teamInfo
             stringValidator()(displayName)
@@ -6248,9 +6248,9 @@ open class Sharing {
     /// The TransferFolderArg struct
     open class TransferFolderArg: CustomStringConvertible {
         /// The ID for the shared folder.
-        open let sharedFolderId: String
+        public let sharedFolderId: String
         /// A account or team member ID to transfer ownership to.
-        open let toDropboxId: String
+        public let toDropboxId: String
         public init(sharedFolderId: String, toDropboxId: String) {
             stringValidator(pattern: "[-_0-9a-zA-Z:]+")(sharedFolderId)
             self.sharedFolderId = sharedFolderId
@@ -6377,7 +6377,7 @@ open class Sharing {
     /// The UnmountFolderArg struct
     open class UnmountFolderArg: CustomStringConvertible {
         /// The ID for the shared folder.
-        open let sharedFolderId: String
+        public let sharedFolderId: String
         public init(sharedFolderId: String) {
             stringValidator(pattern: "[-_0-9a-zA-Z:]+")(sharedFolderId)
             self.sharedFolderId = sharedFolderId
@@ -6469,7 +6469,7 @@ open class Sharing {
     /// Arguments for unshareFile.
     open class UnshareFileArg: CustomStringConvertible {
         /// The file to unshare.
-        open let file: String
+        public let file: String
         public init(file: String) {
             stringValidator(minLength: 1, pattern: "((/|id:).*|nspath:[0-9]+:.*)|ns:[0-9]+(/.*)?")(file)
             self.file = file
@@ -6553,10 +6553,10 @@ open class Sharing {
     /// The UnshareFolderArg struct
     open class UnshareFolderArg: CustomStringConvertible {
         /// The ID for the shared folder.
-        open let sharedFolderId: String
+        public let sharedFolderId: String
         /// If true, members of this shared folder will get a copy of this folder after it's unshared. Otherwise, it
         /// will be removed from their Dropbox. The current user, who is an owner, will always retain their copy.
-        open let leaveACopy: Bool
+        public let leaveACopy: Bool
         public init(sharedFolderId: String, leaveACopy: Bool = false) {
             stringValidator(pattern: "[-_0-9a-zA-Z:]+")(sharedFolderId)
             self.sharedFolderId = sharedFolderId
@@ -6650,11 +6650,11 @@ open class Sharing {
     /// The UpdateFolderMemberArg struct
     open class UpdateFolderMemberArg: CustomStringConvertible {
         /// The ID for the shared folder.
-        open let sharedFolderId: String
+        public let sharedFolderId: String
         /// The member of the shared folder to update.  Only the dropboxId in MemberSelector may be set at this time.
-        open let member: Sharing.MemberSelector
+        public let member: Sharing.MemberSelector
         /// The new access level for member. owner in AccessLevel is disallowed.
-        open let accessLevel: Sharing.AccessLevel
+        public let accessLevel: Sharing.AccessLevel
         public init(sharedFolderId: String, member: Sharing.MemberSelector, accessLevel: Sharing.AccessLevel) {
             stringValidator(pattern: "[-_0-9a-zA-Z:]+")(sharedFolderId)
             self.sharedFolderId = sharedFolderId
@@ -6771,14 +6771,14 @@ open class Sharing {
     /// If any of the policy's are unset, then they retain their current setting.
     open class UpdateFolderPolicyArg: CustomStringConvertible {
         /// The ID for the shared folder.
-        open let sharedFolderId: String
+        public let sharedFolderId: String
         /// Who can be a member of this shared folder. Only applicable if the current user is on a team.
-        open let memberPolicy: Sharing.MemberPolicy?
+        public let memberPolicy: Sharing.MemberPolicy?
         /// Who can add and remove members of this shared folder.
-        open let aclUpdatePolicy: Sharing.AclUpdatePolicy?
+        public let aclUpdatePolicy: Sharing.AclUpdatePolicy?
         /// The policy to apply to shared links created for content inside this shared folder. The current user must be
         /// on a team to set this policy to members in SharedLinkPolicy.
-        open let sharedLinkPolicy: Sharing.SharedLinkPolicy?
+        public let sharedLinkPolicy: Sharing.SharedLinkPolicy?
         public init(sharedFolderId: String, memberPolicy: Sharing.MemberPolicy? = nil, aclUpdatePolicy: Sharing.AclUpdatePolicy? = nil, sharedLinkPolicy: Sharing.SharedLinkPolicy? = nil) {
             stringValidator(pattern: "[-_0-9a-zA-Z:]+")(sharedFolderId)
             self.sharedFolderId = sharedFolderId
@@ -6894,11 +6894,11 @@ open class Sharing {
     /// Basic information about a user. Use usersAccount and usersAccountBatch to obtain more detailed information.
     open class UserInfo: CustomStringConvertible {
         /// The account ID of the user.
-        open let accountId: String
+        public let accountId: String
         /// If the user is in the same team as current user.
-        open let sameTeam: Bool
+        public let sameTeam: Bool
         /// The team member ID of the shared folder member. Only present if sameTeam is true.
-        open let teamMemberId: String?
+        public let teamMemberId: String?
         public init(accountId: String, sameTeam: Bool, teamMemberId: String? = nil) {
             stringValidator(minLength: 40, maxLength: 40)(accountId)
             self.accountId = accountId
@@ -6936,7 +6936,7 @@ open class Sharing {
     /// The information about a user member of the shared content.
     open class UserMembershipInfo: Sharing.MembershipInfo {
         /// The account information for the membership user.
-        open let user: Sharing.UserInfo
+        public let user: Sharing.UserInfo
         public init(accessType: Sharing.AccessLevel, user: Sharing.UserInfo, permissions: Array<Sharing.MemberPermission>? = nil, initials: String? = nil, isInherited: Bool = false) {
             self.user = user
             super.init(accessType: accessType, permissions: permissions, initials: initials, isInherited: isInherited)

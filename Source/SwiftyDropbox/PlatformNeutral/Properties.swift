@@ -11,7 +11,7 @@ open class Properties {
     /// The GetPropertyTemplateArg struct
     open class GetPropertyTemplateArg: CustomStringConvertible {
         /// An identifier for property template added by route properties/template/add.
-        open let templateId: String
+        public let templateId: String
         public init(templateId: String) {
             stringValidator(minLength: 1, pattern: "(/|ptid:).*")(templateId)
             self.templateId = templateId
@@ -42,12 +42,12 @@ open class Properties {
     /// Describes property templates that can be filled and associated with a file.
     open class PropertyGroupTemplate: CustomStringConvertible {
         /// A display name for the property template. Property template names can be up to 256 bytes.
-        open let name: String
+        public let name: String
         /// Description for new property template. Property template descriptions can be up to 1024 bytes.
-        open let description_: String
+        public let description_: String
         /// This is a list of custom properties associated with a property template. There can be up to 64 properties in
         /// a single property template.
-        open let fields: Array<Properties.PropertyFieldTemplate>
+        public let fields: Array<Properties.PropertyFieldTemplate>
         public init(name: String, description_: String, fields: Array<Properties.PropertyFieldTemplate>) {
             stringValidator()(name)
             self.name = name
@@ -114,7 +114,7 @@ open class Properties {
     /// The ListPropertyTemplateIds struct
     open class ListPropertyTemplateIds: CustomStringConvertible {
         /// List of identifiers for templates added by route properties/template/add.
-        open let templateIds: Array<String>
+        public let templateIds: Array<String>
         public init(templateIds: Array<String>) {
             arrayValidator(itemValidator: stringValidator(minLength: 1, pattern: "(/|ptid:).*"))(templateIds)
             self.templateIds = templateIds
@@ -282,9 +282,9 @@ open class Properties {
     open class PropertyField: CustomStringConvertible {
         /// This is the name or key of a custom property in a property template. File property names can be up to 256
         /// bytes.
-        open let name: String
+        public let name: String
         /// Value of a custom property attached to a file. Values can be up to 1024 bytes.
-        open let value: String
+        public let value: String
         public init(name: String, value: String) {
             stringValidator()(name)
             self.name = name
@@ -320,13 +320,13 @@ open class Properties {
     open class PropertyFieldTemplate: CustomStringConvertible {
         /// This is the name or key of a custom property in a property template. File property names can be up to 256
         /// bytes.
-        open let name: String
+        public let name: String
         /// This is the description for a custom property in a property template. File property description can be up to
         /// 1024 bytes.
-        open let description_: String
+        public let description_: String
         /// This is the data type of the value of this property. This type will be enforced upon property creation and
         /// modifications.
-        open let type: Properties.PropertyType
+        public let type: Properties.PropertyType
         public init(name: String, description_: String, type: Properties.PropertyType) {
             stringValidator()(name)
             self.name = name
@@ -364,9 +364,9 @@ open class Properties {
     /// Collection of custom properties in filled property templates.
     open class PropertyGroup: CustomStringConvertible {
         /// A unique identifier for a property template type.
-        open let templateId: String
+        public let templateId: String
         /// This is a list of custom properties associated with a file. There can be up to 32 properties for a template.
-        open let fields: Array<Properties.PropertyField>
+        public let fields: Array<Properties.PropertyField>
         public init(templateId: String, fields: Array<Properties.PropertyField>) {
             stringValidator(minLength: 1, pattern: "(/|ptid:).*")(templateId)
             self.templateId = templateId

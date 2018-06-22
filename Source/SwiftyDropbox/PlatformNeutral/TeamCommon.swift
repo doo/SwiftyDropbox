@@ -62,15 +62,15 @@ open class TeamCommon {
     /// Information about a group.
     open class GroupSummary: CustomStringConvertible {
         /// (no description)
-        open let groupName: String
+        public let groupName: String
         /// (no description)
-        open let groupId: String
+        public let groupId: String
         /// External ID of group. This is an arbitrary ID that an admin can attach to a group.
-        open let groupExternalId: String?
+        public let groupExternalId: String?
         /// The number of members in the group.
-        open let memberCount: UInt32?
+        public let memberCount: UInt32?
         /// Who is allowed to manage the group.
-        open let groupManagementType: TeamCommon.GroupManagementType
+        public let groupManagementType: TeamCommon.GroupManagementType
         public init(groupName: String, groupId: String, groupManagementType: TeamCommon.GroupManagementType, groupExternalId: String? = nil, memberCount: UInt32? = nil) {
             stringValidator()(groupName)
             self.groupName = groupName

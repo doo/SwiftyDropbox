@@ -78,9 +78,9 @@ open class Auth {
     /// Error occurred because the app is being rate limited.
     open class RateLimitError: CustomStringConvertible {
         /// The reason why the app is being rate limited.
-        open let reason: Auth.RateLimitReason
+        public let reason: Auth.RateLimitReason
         /// The number of seconds that the app should wait before making another request.
-        open let retryAfter: UInt64
+        public let retryAfter: UInt64
         public init(reason: Auth.RateLimitReason, retryAfter: UInt64 = 1) {
             self.reason = reason
             comparableValidator()(retryAfter)

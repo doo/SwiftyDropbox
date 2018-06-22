@@ -11,15 +11,15 @@ open class Team {
     /// The DeviceSession struct
     open class DeviceSession: CustomStringConvertible {
         /// The session id
-        open let sessionId: String
+        public let sessionId: String
         /// The IP address of the last activity from this session
-        open let ipAddress: String?
+        public let ipAddress: String?
         /// The country from which the last activity from this session was made
-        open let country: String?
+        public let country: String?
         /// The time this session was created
-        open let created: Date?
+        public let created: Date?
         /// The time of the last activity from this session
-        open let updated: Date?
+        public let updated: Date?
         public init(sessionId: String, ipAddress: String? = nil, country: String? = nil, created: Date? = nil, updated: Date? = nil) {
             stringValidator()(sessionId)
             self.sessionId = sessionId
@@ -64,11 +64,11 @@ open class Team {
     /// Information on active web sessions
     open class ActiveWebSession: Team.DeviceSession {
         /// Information on the hosting device
-        open let userAgent: String
+        public let userAgent: String
         /// Information on the hosting operating system
-        open let os: String
+        public let os: String
         /// Information on the browser used for this web session
-        open let browser: String
+        public let browser: String
         public init(sessionId: String, userAgent: String, os: String, browser: String, ipAddress: String? = nil, country: String? = nil, created: Date? = nil, updated: Date? = nil) {
             stringValidator()(userAgent)
             self.userAgent = userAgent
@@ -147,7 +147,7 @@ open class Team {
     /// The AddPropertyTemplateResult struct
     open class AddPropertyTemplateResult: CustomStringConvertible {
         /// An identifier for property template added by propertiesTemplateAdd.
-        open let templateId: String
+        public let templateId: String
         public init(templateId: String) {
             stringValidator(minLength: 1, pattern: "(/|ptid:).*")(templateId)
             self.templateId = templateId
@@ -237,17 +237,17 @@ open class Team {
     /// Information on linked third party applications
     open class ApiApp: CustomStringConvertible {
         /// The application unique id
-        open let appId: String
+        public let appId: String
         /// The application name
-        open let appName: String
+        public let appName: String
         /// The application publisher name
-        open let publisher: String?
+        public let publisher: String?
         /// The publisher's URL
-        open let publisherUrl: String?
+        public let publisherUrl: String?
         /// The time this application was linked
-        open let linked: Date?
+        public let linked: Date?
         /// Whether the linked application uses a dedicated folder
-        open let isAppFolder: Bool
+        public let isAppFolder: Bool
         public init(appId: String, appName: String, isAppFolder: Bool, publisher: String? = nil, publisherUrl: String? = nil, linked: Date? = nil) {
             stringValidator()(appId)
             self.appId = appId
@@ -296,7 +296,7 @@ open class Team {
     /// Base report structure.
     open class BaseDfbReport: CustomStringConvertible {
         /// First date present in the results as 'YYYY-MM-DD' or None.
-        open let startDate: String
+        public let startDate: String
         public init(startDate: String) {
             stringValidator()(startDate)
             self.startDate = startDate
@@ -327,9 +327,9 @@ open class Team {
     /// Input arguments that can be provided for most reports.
     open class DateRange: CustomStringConvertible {
         /// Optional starting date (inclusive)
-        open let startDate: Date?
+        public let startDate: Date?
         /// Optional ending date (exclusive)
-        open let endDate: Date?
+        public let endDate: Date?
         public init(startDate: Date? = nil, endDate: Date? = nil) {
             self.startDate = startDate
             self.endDate = endDate
@@ -397,15 +397,15 @@ open class Team {
     /// Information about linked Dropbox desktop client sessions
     open class DesktopClientSession: Team.DeviceSession {
         /// Name of the hosting desktop
-        open let hostName: String
+        public let hostName: String
         /// The Dropbox desktop client type
-        open let clientType: Team.DesktopPlatform
+        public let clientType: Team.DesktopPlatform
         /// The Dropbox client version
-        open let clientVersion: String
+        public let clientVersion: String
         /// Information on the hosting platform
-        open let platform: String
+        public let platform: String
         /// Whether it's possible to delete all of the account files upon unlinking
-        open let isDeleteOnUnlinkSupported: Bool
+        public let isDeleteOnUnlinkSupported: Bool
         public init(sessionId: String, hostName: String, clientType: Team.DesktopPlatform, clientVersion: String, platform: String, isDeleteOnUnlinkSupported: Bool, ipAddress: String? = nil, country: String? = nil, created: Date? = nil, updated: Date? = nil) {
             stringValidator()(hostName)
             self.hostName = hostName
@@ -520,9 +520,9 @@ open class Team {
     /// The DeviceSessionArg struct
     open class DeviceSessionArg: CustomStringConvertible {
         /// The session id
-        open let sessionId: String
+        public let sessionId: String
         /// The unique id of the member owning the device
-        open let teamMemberId: String
+        public let teamMemberId: String
         public init(sessionId: String, teamMemberId: String) {
             stringValidator()(sessionId)
             self.sessionId = sessionId
@@ -558,19 +558,19 @@ open class Team {
     /// time window, ending with that day. If there is no data for a day, then the value will be None.
     open class DevicesActive: CustomStringConvertible {
         /// Array of number of linked windows (desktop) clients with activity.
-        open let windows: Array<UInt64?>
+        public let windows: Array<UInt64?>
         /// Array of number of linked mac (desktop) clients with activity.
-        open let macos: Array<UInt64?>
+        public let macos: Array<UInt64?>
         /// Array of number of linked linus (desktop) clients with activity.
-        open let linux: Array<UInt64?>
+        public let linux: Array<UInt64?>
         /// Array of number of linked ios devices with activity.
-        open let ios: Array<UInt64?>
+        public let ios: Array<UInt64?>
         /// Array of number of linked android devices with activity.
-        open let android: Array<UInt64?>
+        public let android: Array<UInt64?>
         /// Array of number of other linked devices (blackberry, windows phone, etc)  with activity.
-        open let other: Array<UInt64?>
+        public let other: Array<UInt64?>
         /// Array of total number of linked clients with activity.
-        open let total: Array<UInt64?>
+        public let total: Array<UInt64?>
         public init(windows: Array<UInt64?>, macos: Array<UInt64?>, linux: Array<UInt64?>, ios: Array<UInt64?>, android: Array<UInt64?>, other: Array<UInt64?>, total: Array<UInt64?>) {
             arrayValidator(itemValidator: nullableValidator(comparableValidator()))(windows)
             self.windows = windows
@@ -626,34 +626,34 @@ open class Team {
     /// there is no data for a day, then the value will be None.
     open class GetActivityReport: Team.BaseDfbReport {
         /// Array of total number of adds by team members.
-        open let adds: Array<UInt64?>
+        public let adds: Array<UInt64?>
         /// Array of number of edits by team members. If the same user edits the same file multiple times this is
         /// counted as a single edit.
-        open let edits: Array<UInt64?>
+        public let edits: Array<UInt64?>
         /// Array of total number of deletes by team members.
-        open let deletes: Array<UInt64?>
+        public let deletes: Array<UInt64?>
         /// Array of the number of users who have been active in the last 28 days.
-        open let activeUsers28Day: Array<UInt64?>
+        public let activeUsers28Day: Array<UInt64?>
         /// Array of the number of users who have been active in the last week.
-        open let activeUsers7Day: Array<UInt64?>
+        public let activeUsers7Day: Array<UInt64?>
         /// Array of the number of users who have been active in the last day.
-        open let activeUsers1Day: Array<UInt64?>
+        public let activeUsers1Day: Array<UInt64?>
         /// Array of the number of shared folders with some activity in the last 28 days.
-        open let activeSharedFolders28Day: Array<UInt64?>
+        public let activeSharedFolders28Day: Array<UInt64?>
         /// Array of the number of shared folders with some activity in the last week.
-        open let activeSharedFolders7Day: Array<UInt64?>
+        public let activeSharedFolders7Day: Array<UInt64?>
         /// Array of the number of shared folders with some activity in the last day.
-        open let activeSharedFolders1Day: Array<UInt64?>
+        public let activeSharedFolders1Day: Array<UInt64?>
         /// Array of the number of shared links created.
-        open let sharedLinksCreated: Array<UInt64?>
+        public let sharedLinksCreated: Array<UInt64?>
         /// Array of the number of views by team users to shared links created by the team.
-        open let sharedLinksViewedByTeam: Array<UInt64?>
+        public let sharedLinksViewedByTeam: Array<UInt64?>
         /// Array of the number of views by users outside of the team to shared links created by the team.
-        open let sharedLinksViewedByOutsideUser: Array<UInt64?>
+        public let sharedLinksViewedByOutsideUser: Array<UInt64?>
         /// Array of the number of views by non-logged-in users to shared links created by the team.
-        open let sharedLinksViewedByNotLoggedIn: Array<UInt64?>
+        public let sharedLinksViewedByNotLoggedIn: Array<UInt64?>
         /// Array of the total number of views to shared links created by the team.
-        open let sharedLinksViewedTotal: Array<UInt64?>
+        public let sharedLinksViewedTotal: Array<UInt64?>
         public init(startDate: String, adds: Array<UInt64?>, edits: Array<UInt64?>, deletes: Array<UInt64?>, activeUsers28Day: Array<UInt64?>, activeUsers7Day: Array<UInt64?>, activeUsers1Day: Array<UInt64?>, activeSharedFolders28Day: Array<UInt64?>, activeSharedFolders7Day: Array<UInt64?>, activeSharedFolders1Day: Array<UInt64?>, sharedLinksCreated: Array<UInt64?>, sharedLinksViewedByTeam: Array<UInt64?>, sharedLinksViewedByOutsideUser: Array<UInt64?>, sharedLinksViewedByNotLoggedIn: Array<UInt64?>, sharedLinksViewedTotal: Array<UInt64?>) {
             arrayValidator(itemValidator: nullableValidator(comparableValidator()))(adds)
             self.adds = adds
@@ -741,11 +741,11 @@ open class Team {
     /// the value will be None.
     open class GetDevicesReport: Team.BaseDfbReport {
         /// Report of the number of devices active in the last day.
-        open let active1Day: Team.DevicesActive
+        public let active1Day: Team.DevicesActive
         /// Report of the number of devices active in the last 7 days.
-        open let active7Day: Team.DevicesActive
+        public let active7Day: Team.DevicesActive
         /// Report of the number of devices active in the last 28 days.
-        open let active28Day: Team.DevicesActive
+        public let active28Day: Team.DevicesActive
         public init(startDate: String, active1Day: Team.DevicesActive, active7Day: Team.DevicesActive, active28Day: Team.DevicesActive) {
             self.active1Day = active1Day
             self.active7Day = active7Day
@@ -785,15 +785,15 @@ open class Team {
     /// there is no data for a day, then the value will be None.
     open class GetMembershipReport: Team.BaseDfbReport {
         /// Team size, for each day.
-        open let teamSize: Array<UInt64?>
+        public let teamSize: Array<UInt64?>
         /// The number of pending invites to the team, for each day.
-        open let pendingInvites: Array<UInt64?>
+        public let pendingInvites: Array<UInt64?>
         /// The number of members that joined the team, for each day.
-        open let membersJoined: Array<UInt64?>
+        public let membersJoined: Array<UInt64?>
         /// The number of suspended team members, for each day.
-        open let suspendedMembers: Array<UInt64?>
+        public let suspendedMembers: Array<UInt64?>
         /// The total number of licenses the team has, for each day.
-        open let licenses: Array<UInt64?>
+        public let licenses: Array<UInt64?>
         public init(startDate: String, teamSize: Array<UInt64?>, pendingInvites: Array<UInt64?>, membersJoined: Array<UInt64?>, suspendedMembers: Array<UInt64?>, licenses: Array<UInt64?>) {
             arrayValidator(itemValidator: nullableValidator(comparableValidator()))(teamSize)
             self.teamSize = teamSize
@@ -844,18 +844,18 @@ open class Team {
     /// there is no data for a day, then the value will be None.
     open class GetStorageReport: Team.BaseDfbReport {
         /// Sum of the shared, unshared, and datastore usages, for each day.
-        open let totalUsage: Array<UInt64?>
+        public let totalUsage: Array<UInt64?>
         /// Array of the combined size (bytes) of team members' shared folders, for each day.
-        open let sharedUsage: Array<UInt64?>
+        public let sharedUsage: Array<UInt64?>
         /// Array of the combined size (bytes) of team members' root namespaces, for each day.
-        open let unsharedUsage: Array<UInt64?>
+        public let unsharedUsage: Array<UInt64?>
         /// Array of the number of shared folders owned by team members, for each day.
-        open let sharedFolders: Array<UInt64?>
+        public let sharedFolders: Array<UInt64?>
         /// Array of storage summaries of team members' account sizes. Each storage summary is an array of key, value
         /// pairs, where each pair describes a storage bucket. The key indicates the upper bound of the bucket and the
         /// value is the number of users in that bucket. There is one such summary per day. If there is no data for a
         /// day, the storage summary will be empty.
-        open let memberStorageMap: Array<Array<Team.StorageBucket>>
+        public let memberStorageMap: Array<Array<Team.StorageBucket>>
         public init(startDate: String, totalUsage: Array<UInt64?>, sharedUsage: Array<UInt64?>, unsharedUsage: Array<UInt64?>, sharedFolders: Array<UInt64?>, memberStorageMap: Array<Array<Team.StorageBucket>>) {
             arrayValidator(itemValidator: nullableValidator(comparableValidator()))(totalUsage)
             self.totalUsage = totalUsage
@@ -947,11 +947,11 @@ open class Team {
     /// The GroupCreateArg struct
     open class GroupCreateArg: CustomStringConvertible {
         /// Group name.
-        open let groupName: String
+        public let groupName: String
         /// The creator of a team can associate an arbitrary external ID to the group.
-        open let groupExternalId: String?
+        public let groupExternalId: String?
         /// Whether the team can be managed by selected users, or only by team admins
-        open let groupManagementType: TeamCommon.GroupManagementType?
+        public let groupManagementType: TeamCommon.GroupManagementType?
         public init(groupName: String, groupExternalId: String? = nil, groupManagementType: TeamCommon.GroupManagementType? = nil) {
             stringValidator()(groupName)
             self.groupName = groupName
@@ -1142,9 +1142,9 @@ open class Team {
     /// Full description of a group.
     open class GroupFullInfo: TeamCommon.GroupSummary {
         /// List of group members.
-        open let members: Array<Team.GroupMemberInfo>?
+        public let members: Array<Team.GroupMemberInfo>?
         /// The group creation time as a UTC timestamp in milliseconds since the Unix epoch.
-        open let created: UInt64
+        public let created: UInt64
         public init(groupName: String, groupId: String, groupManagementType: TeamCommon.GroupManagementType, created: UInt64, groupExternalId: String? = nil, memberCount: UInt32? = nil, members: Array<Team.GroupMemberInfo>? = nil) {
             self.members = members
             comparableValidator()(created)
@@ -1189,9 +1189,9 @@ open class Team {
     /// Profile of group member, and role in group.
     open class GroupMemberInfo: CustomStringConvertible {
         /// Profile of group member.
-        open let profile: Team.MemberProfile
+        public let profile: Team.MemberProfile
         /// The role that the user has in the group.
-        open let accessType: Team.GroupAccessType
+        public let accessType: Team.GroupAccessType
         public init(profile: Team.MemberProfile, accessType: Team.GroupAccessType) {
             self.profile = profile
             self.accessType = accessType
@@ -1224,9 +1224,9 @@ open class Team {
     /// Argument for selecting a group and a single user.
     open class GroupMemberSelector: CustomStringConvertible {
         /// Specify a group.
-        open let group: Team.GroupSelector
+        public let group: Team.GroupSelector
         /// Identity of a user that is a member of group.
-        open let user: Team.UserSelectorArg
+        public let user: Team.UserSelectorArg
         public init(group: Team.GroupSelector, user: Team.UserSelectorArg) {
             self.group = group
             self.user = user
@@ -1371,7 +1371,7 @@ open class Team {
     open class IncludeMembersArg: CustomStringConvertible {
         /// Whether to return the list of members in the group.  Note that the default value will cause all the group
         /// members  to be returned in the response. This may take a long time for large groups.
-        open let returnMembers: Bool
+        public let returnMembers: Bool
         public init(returnMembers: Bool = true) {
             self.returnMembers = returnMembers
         }
@@ -1401,9 +1401,9 @@ open class Team {
     /// The GroupMembersAddArg struct
     open class GroupMembersAddArg: Team.IncludeMembersArg {
         /// Group to which users will be added.
-        open let group: Team.GroupSelector
+        public let group: Team.GroupSelector
         /// List of users to be added to the group.
-        open let members: Array<Team.MemberAccess>
+        public let members: Array<Team.MemberAccess>
         public init(group: Team.GroupSelector, members: Array<Team.MemberAccess>, returnMembers: Bool = true) {
             self.group = group
             self.members = members
@@ -1536,9 +1536,9 @@ open class Team {
     /// Result returned by groupsMembersAdd and groupsMembersRemove.
     open class GroupMembersChangeResult: CustomStringConvertible {
         /// The group info after member change operation has been performed.
-        open let groupInfo: Team.GroupFullInfo
+        public let groupInfo: Team.GroupFullInfo
         /// An ID that can be used to obtain the status of granting/revoking group-owned resources.
-        open let asyncJobId: String
+        public let asyncJobId: String
         public init(groupInfo: Team.GroupFullInfo, asyncJobId: String) {
             self.groupInfo = groupInfo
             stringValidator(minLength: 1)(asyncJobId)
@@ -1572,9 +1572,9 @@ open class Team {
     /// The GroupMembersRemoveArg struct
     open class GroupMembersRemoveArg: Team.IncludeMembersArg {
         /// Group from which users will be removed.
-        open let group: Team.GroupSelector
+        public let group: Team.GroupSelector
         /// List of users to be removed from the group.
-        open let users: Array<Team.UserSelectorArg>
+        public let users: Array<Team.UserSelectorArg>
         public init(group: Team.GroupSelector, users: Array<Team.UserSelectorArg>, returnMembers: Bool = true) {
             self.group = group
             self.users = users
@@ -1721,9 +1721,9 @@ open class Team {
     /// Argument for selecting a group and a list of users.
     open class GroupMembersSelector: CustomStringConvertible {
         /// Specify a group.
-        open let group: Team.GroupSelector
+        public let group: Team.GroupSelector
         /// A list of users that are members of group.
-        open let users: Team.UsersSelectorArg
+        public let users: Team.UsersSelectorArg
         public init(group: Team.GroupSelector, users: Team.UsersSelectorArg) {
             self.group = group
             self.users = users
@@ -1756,10 +1756,10 @@ open class Team {
     /// The GroupMembersSetAccessTypeArg struct
     open class GroupMembersSetAccessTypeArg: Team.GroupMemberSelector {
         /// New group access type the user will have.
-        open let accessType: Team.GroupAccessType
+        public let accessType: Team.GroupAccessType
         /// Whether to return the list of members in the group.  Note that the default value will cause all the group
         /// members  to be returned in the response. This may take a long time for large groups.
-        open let returnMembers: Bool
+        public let returnMembers: Bool
         public init(group: Team.GroupSelector, user: Team.UserSelectorArg, accessType: Team.GroupAccessType, returnMembers: Bool = true) {
             self.accessType = accessType
             self.returnMembers = returnMembers
@@ -1842,14 +1842,14 @@ open class Team {
     /// The GroupUpdateArgs struct
     open class GroupUpdateArgs: Team.IncludeMembersArg {
         /// Specify a group.
-        open let group: Team.GroupSelector
+        public let group: Team.GroupSelector
         /// Optional argument. Set group name to this if provided.
-        open let newGroupName: String?
+        public let newGroupName: String?
         /// Optional argument. New group external ID. If the argument is None, the group's external_id won't be updated.
         /// If the argument is empty string, the group's external id will be cleared.
-        open let newGroupExternalId: String?
+        public let newGroupExternalId: String?
         /// Set new group management type, if provided.
-        open let newGroupManagementType: TeamCommon.GroupManagementType?
+        public let newGroupManagementType: TeamCommon.GroupManagementType?
         public init(group: Team.GroupSelector, returnMembers: Bool = true, newGroupName: String? = nil, newGroupExternalId: String? = nil, newGroupManagementType: TeamCommon.GroupManagementType? = nil) {
             self.group = group
             nullableValidator(stringValidator())(newGroupName)
@@ -2033,7 +2033,7 @@ open class Team {
     /// The GroupsListArg struct
     open class GroupsListArg: CustomStringConvertible {
         /// Number of results to return per call.
-        open let limit: UInt32
+        public let limit: UInt32
         public init(limit: UInt32 = 1000) {
             comparableValidator(minValue: 1, maxValue: 1000)(limit)
             self.limit = limit
@@ -2064,7 +2064,7 @@ open class Team {
     /// The GroupsListContinueArg struct
     open class GroupsListContinueArg: CustomStringConvertible {
         /// Indicates from what point to get the next set of groups.
-        open let cursor: String
+        public let cursor: String
         public init(cursor: String) {
             stringValidator()(cursor)
             self.cursor = cursor
@@ -2138,12 +2138,12 @@ open class Team {
     /// The GroupsListResult struct
     open class GroupsListResult: CustomStringConvertible {
         /// (no description)
-        open let groups: Array<TeamCommon.GroupSummary>
+        public let groups: Array<TeamCommon.GroupSummary>
         /// Pass the cursor into groupsListContinue to obtain the additional groups.
-        open let cursor: String
+        public let cursor: String
         /// Is true if there are additional groups that have not been returned yet. An additional call to
         /// groupsListContinue can retrieve them.
-        open let hasMore: Bool
+        public let hasMore: Bool
         public init(groups: Array<TeamCommon.GroupSummary>, cursor: String, hasMore: Bool) {
             self.groups = groups
             stringValidator()(cursor)
@@ -2180,9 +2180,9 @@ open class Team {
     /// The GroupsMembersListArg struct
     open class GroupsMembersListArg: CustomStringConvertible {
         /// The group whose members are to be listed.
-        open let group: Team.GroupSelector
+        public let group: Team.GroupSelector
         /// Number of results to return per call.
-        open let limit: UInt32
+        public let limit: UInt32
         public init(group: Team.GroupSelector, limit: UInt32 = 1000) {
             self.group = group
             comparableValidator(minValue: 1, maxValue: 1000)(limit)
@@ -2216,7 +2216,7 @@ open class Team {
     /// The GroupsMembersListContinueArg struct
     open class GroupsMembersListContinueArg: CustomStringConvertible {
         /// Indicates from what point to get the next set of groups.
-        open let cursor: String
+        public let cursor: String
         public init(cursor: String) {
             stringValidator()(cursor)
             self.cursor = cursor
@@ -2290,12 +2290,12 @@ open class Team {
     /// The GroupsMembersListResult struct
     open class GroupsMembersListResult: CustomStringConvertible {
         /// (no description)
-        open let members: Array<Team.GroupMemberInfo>
+        public let members: Array<Team.GroupMemberInfo>
         /// Pass the cursor into groupsMembersListContinue to obtain additional group members.
-        open let cursor: String
+        public let cursor: String
         /// Is true if there are additional group members that have not been returned yet. An additional call to
         /// groupsMembersListContinue can retrieve them.
-        open let hasMore: Bool
+        public let hasMore: Bool
         public init(members: Array<Team.GroupMemberInfo>, cursor: String, hasMore: Bool) {
             self.members = members
             stringValidator()(cursor)
@@ -2437,7 +2437,7 @@ open class Team {
     /// The ListMemberAppsArg struct
     open class ListMemberAppsArg: CustomStringConvertible {
         /// The team member id
-        open let teamMemberId: String
+        public let teamMemberId: String
         public init(teamMemberId: String) {
             stringValidator()(teamMemberId)
             self.teamMemberId = teamMemberId
@@ -2511,7 +2511,7 @@ open class Team {
     /// The ListMemberAppsResult struct
     open class ListMemberAppsResult: CustomStringConvertible {
         /// List of third party applications linked by this team member
-        open let linkedApiApps: Array<Team.ApiApp>
+        public let linkedApiApps: Array<Team.ApiApp>
         public init(linkedApiApps: Array<Team.ApiApp>) {
             self.linkedApiApps = linkedApiApps
         }
@@ -2541,13 +2541,13 @@ open class Team {
     /// The ListMemberDevicesArg struct
     open class ListMemberDevicesArg: CustomStringConvertible {
         /// The team's member id
-        open let teamMemberId: String
+        public let teamMemberId: String
         /// Whether to list web sessions of the team's member
-        open let includeWebSessions: Bool
+        public let includeWebSessions: Bool
         /// Whether to list linked desktop devices of the team's member
-        open let includeDesktopClients: Bool
+        public let includeDesktopClients: Bool
         /// Whether to list linked mobile devices of the team's member
-        open let includeMobileClients: Bool
+        public let includeMobileClients: Bool
         public init(teamMemberId: String, includeWebSessions: Bool = true, includeDesktopClients: Bool = true, includeMobileClients: Bool = true) {
             stringValidator()(teamMemberId)
             self.teamMemberId = teamMemberId
@@ -2630,11 +2630,11 @@ open class Team {
     /// The ListMemberDevicesResult struct
     open class ListMemberDevicesResult: CustomStringConvertible {
         /// List of web sessions made by this team member
-        open let activeWebSessions: Array<Team.ActiveWebSession>?
+        public let activeWebSessions: Array<Team.ActiveWebSession>?
         /// List of desktop clients used by this team member
-        open let desktopClientSessions: Array<Team.DesktopClientSession>?
+        public let desktopClientSessions: Array<Team.DesktopClientSession>?
         /// List of mobile client used by this team member
-        open let mobileClientSessions: Array<Team.MobileClientSession>?
+        public let mobileClientSessions: Array<Team.MobileClientSession>?
         public init(activeWebSessions: Array<Team.ActiveWebSession>? = nil, desktopClientSessions: Array<Team.DesktopClientSession>? = nil, mobileClientSessions: Array<Team.MobileClientSession>? = nil) {
             self.activeWebSessions = activeWebSessions
             self.desktopClientSessions = desktopClientSessions
@@ -2672,7 +2672,7 @@ open class Team {
         /// At the first call to the linkedAppsListMembersLinkedApps the cursor shouldn't be passed. Then, if the result
         /// of the call includes a cursor, the following requests should include the received cursors in order to
         /// receive the next sub list of the team applications
-        open let cursor: String?
+        public let cursor: String?
         public init(cursor: String? = nil) {
             nullableValidator(stringValidator())(cursor)
             self.cursor = cursor
@@ -2747,12 +2747,12 @@ open class Team {
     /// Information returned by linkedAppsListMembersLinkedApps.
     open class ListMembersAppsResult: CustomStringConvertible {
         /// The linked applications of each member of the team
-        open let apps: Array<Team.MemberLinkedApps>
+        public let apps: Array<Team.MemberLinkedApps>
         /// If true, then there are more apps available. Pass the cursor to linkedAppsListMembersLinkedApps to retrieve
         /// the rest.
-        open let hasMore: Bool
+        public let hasMore: Bool
         /// Pass the cursor into linkedAppsListMembersLinkedApps to receive the next sub list of team's applications.
-        open let cursor: String?
+        public let cursor: String?
         public init(apps: Array<Team.MemberLinkedApps>, hasMore: Bool, cursor: String? = nil) {
             self.apps = apps
             self.hasMore = hasMore
@@ -2791,13 +2791,13 @@ open class Team {
         /// At the first call to the devicesListMembersDevices the cursor shouldn't be passed. Then, if the result of
         /// the call includes a cursor, the following requests should include the received cursors in order to receive
         /// the next sub list of team devices
-        open let cursor: String?
+        public let cursor: String?
         /// Whether to list web sessions of the team members
-        open let includeWebSessions: Bool
+        public let includeWebSessions: Bool
         /// Whether to list desktop clients of the team members
-        open let includeDesktopClients: Bool
+        public let includeDesktopClients: Bool
         /// Whether to list mobile clients of the team members
-        open let includeMobileClients: Bool
+        public let includeMobileClients: Bool
         public init(cursor: String? = nil, includeWebSessions: Bool = true, includeDesktopClients: Bool = true, includeMobileClients: Bool = true) {
             nullableValidator(stringValidator())(cursor)
             self.cursor = cursor
@@ -2881,12 +2881,12 @@ open class Team {
     /// The ListMembersDevicesResult struct
     open class ListMembersDevicesResult: CustomStringConvertible {
         /// The devices of each member of the team
-        open let devices: Array<Team.MemberDevices>
+        public let devices: Array<Team.MemberDevices>
         /// If true, then there are more devices available. Pass the cursor to devicesListMembersDevices to retrieve the
         /// rest.
-        open let hasMore: Bool
+        public let hasMore: Bool
         /// Pass the cursor into devicesListMembersDevices to receive the next sub list of team's devices.
-        open let cursor: String?
+        public let cursor: String?
         public init(devices: Array<Team.MemberDevices>, hasMore: Bool, cursor: String? = nil) {
             self.devices = devices
             self.hasMore = hasMore
@@ -2925,7 +2925,7 @@ open class Team {
         /// At the first call to the linkedAppsListTeamLinkedApps the cursor shouldn't be passed. Then, if the result of
         /// the call includes a cursor, the following requests should include the received cursors in order to receive
         /// the next sub list of the team applications
-        open let cursor: String?
+        public let cursor: String?
         public init(cursor: String? = nil) {
             nullableValidator(stringValidator())(cursor)
             self.cursor = cursor
@@ -3000,12 +3000,12 @@ open class Team {
     /// Information returned by linkedAppsListTeamLinkedApps.
     open class ListTeamAppsResult: CustomStringConvertible {
         /// The linked applications of each member of the team
-        open let apps: Array<Team.MemberLinkedApps>
+        public let apps: Array<Team.MemberLinkedApps>
         /// If true, then there are more apps available. Pass the cursor to linkedAppsListTeamLinkedApps to retrieve the
         /// rest.
-        open let hasMore: Bool
+        public let hasMore: Bool
         /// Pass the cursor into linkedAppsListTeamLinkedApps to receive the next sub list of team's applications.
-        open let cursor: String?
+        public let cursor: String?
         public init(apps: Array<Team.MemberLinkedApps>, hasMore: Bool, cursor: String? = nil) {
             self.apps = apps
             self.hasMore = hasMore
@@ -3044,13 +3044,13 @@ open class Team {
         /// At the first call to the devicesListTeamDevices the cursor shouldn't be passed. Then, if the result of the
         /// call includes a cursor, the following requests should include the received cursors in order to receive the
         /// next sub list of team devices
-        open let cursor: String?
+        public let cursor: String?
         /// Whether to list web sessions of the team members
-        open let includeWebSessions: Bool
+        public let includeWebSessions: Bool
         /// Whether to list desktop clients of the team members
-        open let includeDesktopClients: Bool
+        public let includeDesktopClients: Bool
         /// Whether to list mobile clients of the team members
-        open let includeMobileClients: Bool
+        public let includeMobileClients: Bool
         public init(cursor: String? = nil, includeWebSessions: Bool = true, includeDesktopClients: Bool = true, includeMobileClients: Bool = true) {
             nullableValidator(stringValidator())(cursor)
             self.cursor = cursor
@@ -3134,12 +3134,12 @@ open class Team {
     /// The ListTeamDevicesResult struct
     open class ListTeamDevicesResult: CustomStringConvertible {
         /// The devices of each member of the team
-        open let devices: Array<Team.MemberDevices>
+        public let devices: Array<Team.MemberDevices>
         /// If true, then there are more devices available. Pass the cursor to devicesListTeamDevices to retrieve the
         /// rest.
-        open let hasMore: Bool
+        public let hasMore: Bool
         /// Pass the cursor into devicesListTeamDevices to receive the next sub list of team's devices.
-        open let cursor: String?
+        public let cursor: String?
         public init(devices: Array<Team.MemberDevices>, hasMore: Bool, cursor: String? = nil) {
             self.devices = devices
             self.hasMore = hasMore
@@ -3176,9 +3176,9 @@ open class Team {
     /// Specify access type a member should have when joined to a group.
     open class MemberAccess: CustomStringConvertible {
         /// Identity of a user.
-        open let user: Team.UserSelectorArg
+        public let user: Team.UserSelectorArg
         /// Access type.
-        open let accessType: Team.GroupAccessType
+        public let accessType: Team.GroupAccessType
         public init(user: Team.UserSelectorArg, accessType: Team.GroupAccessType) {
             self.user = user
             self.accessType = accessType
@@ -3211,19 +3211,19 @@ open class Team {
     /// The MemberAddArg struct
     open class MemberAddArg: CustomStringConvertible {
         /// (no description)
-        open let memberEmail: String
+        public let memberEmail: String
         /// Member's first name.
-        open let memberGivenName: String
+        public let memberGivenName: String
         /// Member's last name.
-        open let memberSurname: String
+        public let memberSurname: String
         /// External ID for member.
-        open let memberExternalId: String?
+        public let memberExternalId: String?
         /// Whether to send a welcome email to the member. If send_welcome_email is false, no email invitation will be
         /// sent to the user. This may be useful for apps using single sign-on (SSO) flows for onboarding that want to
         /// handle announcements themselves.
-        open let sendWelcomeEmail: Bool
+        public let sendWelcomeEmail: Bool
         /// (no description)
-        open let role: Team.AdminTier
+        public let role: Team.AdminTier
         public init(memberEmail: String, memberGivenName: String, memberSurname: String, memberExternalId: String? = nil, sendWelcomeEmail: Bool = true, role: Team.AdminTier = .memberOnly) {
             stringValidator(maxLength: 255, pattern: "^['&A-Za-z0-9._%+-]+@[A-Za-z0-9-][A-Za-z0-9.-]*.[A-Za-z]{2,15}$")(memberEmail)
             self.memberEmail = memberEmail
@@ -3384,13 +3384,13 @@ open class Team {
     /// Information on devices of a team's member.
     open class MemberDevices: CustomStringConvertible {
         /// The member unique Id
-        open let teamMemberId: String
+        public let teamMemberId: String
         /// List of web sessions made by this team member
-        open let webSessions: Array<Team.ActiveWebSession>?
+        public let webSessions: Array<Team.ActiveWebSession>?
         /// List of desktop clients by this team member
-        open let desktopClients: Array<Team.DesktopClientSession>?
+        public let desktopClients: Array<Team.DesktopClientSession>?
         /// List of mobile clients by this team member
-        open let mobileClients: Array<Team.MobileClientSession>?
+        public let mobileClients: Array<Team.MobileClientSession>?
         public init(teamMemberId: String, webSessions: Array<Team.ActiveWebSession>? = nil, desktopClients: Array<Team.DesktopClientSession>? = nil, mobileClients: Array<Team.MobileClientSession>? = nil) {
             stringValidator()(teamMemberId)
             self.teamMemberId = teamMemberId
@@ -3430,9 +3430,9 @@ open class Team {
     /// Information on linked applications of a team member.
     open class MemberLinkedApps: CustomStringConvertible {
         /// The member unique Id
-        open let teamMemberId: String
+        public let teamMemberId: String
         /// List of third party applications linked by this team member
-        open let linkedApiApps: Array<Team.ApiApp>
+        public let linkedApiApps: Array<Team.ApiApp>
         public init(teamMemberId: String, linkedApiApps: Array<Team.ApiApp>) {
             stringValidator()(teamMemberId)
             self.teamMemberId = teamMemberId
@@ -3466,23 +3466,23 @@ open class Team {
     /// Basic member profile.
     open class MemberProfile: CustomStringConvertible {
         /// ID of user as a member of a team.
-        open let teamMemberId: String
+        public let teamMemberId: String
         /// External ID that a team can attach to the user. An application using the API may find it easier to use their
         /// own IDs instead of Dropbox IDs like account_id or team_member_id.
-        open let externalId: String?
+        public let externalId: String?
         /// A user's account identifier.
-        open let accountId: String?
+        public let accountId: String?
         /// Email address of user.
-        open let email: String
+        public let email: String
         /// Is true if the user's email is verified to be owned by the user.
-        open let emailVerified: Bool
+        public let emailVerified: Bool
         /// The user's status as a member of a specific team.
-        open let status: Team.TeamMemberStatus
+        public let status: Team.TeamMemberStatus
         /// Representations for a person's name.
-        open let name: Users.Name
+        public let name: Users.Name
         /// The user's membership type: full (normal team member) vs limited (does not use a license; no access to the
         /// team's shared quota).
-        open let membershipType: Team.TeamMembershipType
+        public let membershipType: Team.TeamMembershipType
         public init(teamMemberId: String, email: String, emailVerified: Bool, status: Team.TeamMemberStatus, name: Users.Name, membershipType: Team.TeamMembershipType, externalId: String? = nil, accountId: String? = nil) {
             stringValidator()(teamMemberId)
             self.teamMemberId = teamMemberId
@@ -3615,9 +3615,9 @@ open class Team {
     /// The MembersAddArg struct
     open class MembersAddArg: CustomStringConvertible {
         /// Details of new members to be added to the team.
-        open let newMembers: Array<Team.MemberAddArg>
+        public let newMembers: Array<Team.MemberAddArg>
         /// Whether to force the add to happen asynchronously.
-        open let forceAsync: Bool
+        public let forceAsync: Bool
         public init(newMembers: Array<Team.MemberAddArg>, forceAsync: Bool = false) {
             self.newMembers = newMembers
             self.forceAsync = forceAsync
@@ -3750,9 +3750,9 @@ open class Team {
     /// Exactly one of team_member_id, email, or external_id must be provided to identify the user account.
     open class MembersDeactivateArg: CustomStringConvertible {
         /// Identity of user to remove/suspend.
-        open let user: Team.UserSelectorArg
+        public let user: Team.UserSelectorArg
         /// If provided, controls if the user's data will be deleted on their linked devices.
-        open let wipeData: Bool
+        public let wipeData: Bool
         public init(user: Team.UserSelectorArg, wipeData: Bool = true) {
             self.user = user
             self.wipeData = wipeData
@@ -3836,7 +3836,7 @@ open class Team {
     /// The MembersGetInfoArgs struct
     open class MembersGetInfoArgs: CustomStringConvertible {
         /// List of team members.
-        open let members: Array<Team.UserSelectorArg>
+        public let members: Array<Team.UserSelectorArg>
         public init(members: Array<Team.UserSelectorArg>) {
             self.members = members
         }
@@ -3947,9 +3947,9 @@ open class Team {
     /// The MembersListArg struct
     open class MembersListArg: CustomStringConvertible {
         /// Number of results to return per call.
-        open let limit: UInt32
+        public let limit: UInt32
         /// Whether to return removed members.
-        open let includeRemoved: Bool
+        public let includeRemoved: Bool
         public init(limit: UInt32 = 1000, includeRemoved: Bool = false) {
             comparableValidator(minValue: 1, maxValue: 1000)(limit)
             self.limit = limit
@@ -3983,7 +3983,7 @@ open class Team {
     /// The MembersListContinueArg struct
     open class MembersListContinueArg: CustomStringConvertible {
         /// Indicates from what point to get the next set of members.
-        open let cursor: String
+        public let cursor: String
         public init(cursor: String) {
             stringValidator()(cursor)
             self.cursor = cursor
@@ -4092,12 +4092,12 @@ open class Team {
     /// The MembersListResult struct
     open class MembersListResult: CustomStringConvertible {
         /// List of team members.
-        open let members: Array<Team.TeamMemberInfo>
+        public let members: Array<Team.TeamMemberInfo>
         /// Pass the cursor into membersListContinue to obtain the additional members.
-        open let cursor: String
+        public let cursor: String
         /// Is true if there are additional team members that have not been returned yet. An additional call to
         /// membersListContinue can retrieve them.
-        open let hasMore: Bool
+        public let hasMore: Bool
         public init(members: Array<Team.TeamMemberInfo>, cursor: String, hasMore: Bool) {
             self.members = members
             stringValidator()(cursor)
@@ -4134,7 +4134,7 @@ open class Team {
     /// Exactly one of team_member_id, email, or external_id must be provided to identify the user account.
     open class MembersRecoverArg: CustomStringConvertible {
         /// Identity of user to recover.
-        open let user: Team.UserSelectorArg
+        public let user: Team.UserSelectorArg
         public init(user: Team.UserSelectorArg) {
             self.user = user
         }
@@ -4231,13 +4231,13 @@ open class Team {
     /// The MembersRemoveArg struct
     open class MembersRemoveArg: Team.MembersDeactivateArg {
         /// If provided, files from the deleted member account will be transferred to this user.
-        open let transferDestId: Team.UserSelectorArg?
+        public let transferDestId: Team.UserSelectorArg?
         /// If provided, errors during the transfer process will be sent via email to this user. If the transfer_dest_id
         /// argument was provided, then this argument must be provided as well.
-        open let transferAdminId: Team.UserSelectorArg?
+        public let transferAdminId: Team.UserSelectorArg?
         /// Downgrade the member to a Basic account. The user will retain the email address associated with their
         /// Dropbox  account and data in their account that is not restricted to team members.
-        open let keepAccount: Bool
+        public let keepAccount: Bool
         public init(user: Team.UserSelectorArg, wipeData: Bool = true, transferDestId: Team.UserSelectorArg? = nil, transferAdminId: Team.UserSelectorArg? = nil, keepAccount: Bool = false) {
             self.transferDestId = transferDestId
             self.transferAdminId = transferAdminId
@@ -4476,9 +4476,9 @@ open class Team {
     /// Exactly one of team_member_id, email, or external_id must be provided to identify the user account.
     open class MembersSetPermissionsArg: CustomStringConvertible {
         /// Identity of user whose role will be set.
-        open let user: Team.UserSelectorArg
+        public let user: Team.UserSelectorArg
         /// The new role of the member.
-        open let newRole: Team.AdminTier
+        public let newRole: Team.AdminTier
         public init(user: Team.UserSelectorArg, newRole: Team.AdminTier) {
             self.user = user
             self.newRole = newRole
@@ -4586,9 +4586,9 @@ open class Team {
     /// The MembersSetPermissionsResult struct
     open class MembersSetPermissionsResult: CustomStringConvertible {
         /// The member ID of the user to which the change was applied.
-        open let teamMemberId: String
+        public let teamMemberId: String
         /// The role after the change.
-        open let role: Team.AdminTier
+        public let role: Team.AdminTier
         public init(teamMemberId: String, role: Team.AdminTier) {
             stringValidator()(teamMemberId)
             self.teamMemberId = teamMemberId
@@ -4623,15 +4623,15 @@ open class Team {
     /// of new_email, new_external_id, new_given_name, and/or new_surname must be provided.
     open class MembersSetProfileArg: CustomStringConvertible {
         /// Identity of user whose profile will be set.
-        open let user: Team.UserSelectorArg
+        public let user: Team.UserSelectorArg
         /// New email for member.
-        open let newEmail: String?
+        public let newEmail: String?
         /// New external ID for member.
-        open let newExternalId: String?
+        public let newExternalId: String?
         /// New given name for member.
-        open let newGivenName: String?
+        public let newGivenName: String?
         /// New surname for member.
-        open let newSurname: String?
+        public let newSurname: String?
         public init(user: Team.UserSelectorArg, newEmail: String? = nil, newExternalId: String? = nil, newGivenName: String? = nil, newSurname: String? = nil) {
             self.user = user
             nullableValidator(stringValidator(maxLength: 255, pattern: "^['&A-Za-z0-9._%+-]+@[A-Za-z0-9-][A-Za-z0-9.-]*.[A-Za-z]{2,15}$"))(newEmail)
@@ -4851,7 +4851,7 @@ open class Team {
     /// Exactly one of team_member_id, email, or external_id must be provided to identify the user account.
     open class MembersUnsuspendArg: CustomStringConvertible {
         /// Identity of user to unsuspend.
-        open let user: Team.UserSelectorArg
+        public let user: Team.UserSelectorArg
         public init(user: Team.UserSelectorArg) {
             self.user = user
         }
@@ -5023,15 +5023,15 @@ open class Team {
     /// Information about linked Dropbox mobile client sessions
     open class MobileClientSession: Team.DeviceSession {
         /// The device name
-        open let deviceName: String
+        public let deviceName: String
         /// The mobile application type
-        open let clientType: Team.MobileClientPlatform
+        public let clientType: Team.MobileClientPlatform
         /// The dropbox client version
-        open let clientVersion: String?
+        public let clientVersion: String?
         /// The hosting OS version
-        open let osVersion: String?
+        public let osVersion: String?
         /// last carrier used by the device
-        open let lastCarrier: String?
+        public let lastCarrier: String?
         public init(sessionId: String, deviceName: String, clientType: Team.MobileClientPlatform, ipAddress: String? = nil, country: String? = nil, created: Date? = nil, updated: Date? = nil, clientVersion: String? = nil, osVersion: String? = nil, lastCarrier: String? = nil) {
             stringValidator()(deviceName)
             self.deviceName = deviceName
@@ -5088,7 +5088,7 @@ open class Team {
     /// The RemovedStatus struct
     open class RemovedStatus: CustomStringConvertible {
         /// True if the removed team member is recoverable
-        open let isRecoverable: Bool
+        public let isRecoverable: Bool
         public init(isRecoverable: Bool) {
             self.isRecoverable = isRecoverable
         }
@@ -5119,7 +5119,7 @@ open class Team {
     open class RevokeDesktopClientArg: Team.DeviceSessionArg {
         /// Whether to delete all files of the account (this is possible only if supported by the desktop client and
         /// will be made the next time the client access the account)
-        open let deleteOnUnlink: Bool
+        public let deleteOnUnlink: Bool
         public init(sessionId: String, teamMemberId: String, deleteOnUnlink: Bool = false) {
             self.deleteOnUnlink = deleteOnUnlink
             super.init(sessionId: sessionId, teamMemberId: teamMemberId)
@@ -5208,7 +5208,7 @@ open class Team {
     /// The RevokeDeviceSessionBatchArg struct
     open class RevokeDeviceSessionBatchArg: CustomStringConvertible {
         /// (no description)
-        open let revokeDevices: Array<Team.RevokeDeviceSessionArg>
+        public let revokeDevices: Array<Team.RevokeDeviceSessionArg>
         public init(revokeDevices: Array<Team.RevokeDeviceSessionArg>) {
             self.revokeDevices = revokeDevices
         }
@@ -5273,7 +5273,7 @@ open class Team {
     /// The RevokeDeviceSessionBatchResult struct
     open class RevokeDeviceSessionBatchResult: CustomStringConvertible {
         /// (no description)
-        open let revokeDevicesStatus: Array<Team.RevokeDeviceSessionStatus>
+        public let revokeDevicesStatus: Array<Team.RevokeDeviceSessionStatus>
         public init(revokeDevicesStatus: Array<Team.RevokeDeviceSessionStatus>) {
             self.revokeDevicesStatus = revokeDevicesStatus
         }
@@ -5354,9 +5354,9 @@ open class Team {
     /// The RevokeDeviceSessionStatus struct
     open class RevokeDeviceSessionStatus: CustomStringConvertible {
         /// Result of the revoking request
-        open let success: Bool
+        public let success: Bool
         /// The error cause in case of a failure
-        open let errorType: Team.RevokeDeviceSessionError?
+        public let errorType: Team.RevokeDeviceSessionError?
         public init(success: Bool, errorType: Team.RevokeDeviceSessionError? = nil) {
             self.success = success
             self.errorType = errorType
@@ -5389,11 +5389,11 @@ open class Team {
     /// The RevokeLinkedApiAppArg struct
     open class RevokeLinkedApiAppArg: CustomStringConvertible {
         /// The application's unique id
-        open let appId: String
+        public let appId: String
         /// The unique id of the member owning the device
-        open let teamMemberId: String
+        public let teamMemberId: String
         /// Whether to keep the application dedicated folder (in case the application uses  one)
-        open let keepAppFolder: Bool
+        public let keepAppFolder: Bool
         public init(appId: String, teamMemberId: String, keepAppFolder: Bool = true) {
             stringValidator()(appId)
             self.appId = appId
@@ -5431,7 +5431,7 @@ open class Team {
     /// The RevokeLinkedApiAppBatchArg struct
     open class RevokeLinkedApiAppBatchArg: CustomStringConvertible {
         /// (no description)
-        open let revokeLinkedApp: Array<Team.RevokeLinkedApiAppArg>
+        public let revokeLinkedApp: Array<Team.RevokeLinkedApiAppArg>
         public init(revokeLinkedApp: Array<Team.RevokeLinkedApiAppArg>) {
             self.revokeLinkedApp = revokeLinkedApp
         }
@@ -5496,7 +5496,7 @@ open class Team {
     /// The RevokeLinkedAppBatchResult struct
     open class RevokeLinkedAppBatchResult: CustomStringConvertible {
         /// (no description)
-        open let revokeLinkedAppStatus: Array<Team.RevokeLinkedAppStatus>
+        public let revokeLinkedAppStatus: Array<Team.RevokeLinkedAppStatus>
         public init(revokeLinkedAppStatus: Array<Team.RevokeLinkedAppStatus>) {
             self.revokeLinkedAppStatus = revokeLinkedAppStatus
         }
@@ -5577,9 +5577,9 @@ open class Team {
     /// The RevokeLinkedAppStatus struct
     open class RevokeLinkedAppStatus: CustomStringConvertible {
         /// Result of the revoking request
-        open let success: Bool
+        public let success: Bool
         /// The error cause in case of a failure
-        open let errorType: Team.RevokeLinkedAppError?
+        public let errorType: Team.RevokeLinkedAppError?
         public init(success: Bool, errorType: Team.RevokeLinkedAppError? = nil) {
             self.success = success
             self.errorType = errorType
@@ -5612,9 +5612,9 @@ open class Team {
     /// Describes the number of users in a specific storage bucket.
     open class StorageBucket: CustomStringConvertible {
         /// The name of the storage bucket. For example, '1G' is a bucket of users with storage size up to 1 Giga.
-        open let bucket: String
+        public let bucket: String
         /// The number of people whose storage is in the range of this storage bucket.
-        open let users: UInt64
+        public let users: UInt64
         public init(bucket: String, users: UInt64) {
             stringValidator()(bucket)
             self.bucket = bucket
@@ -5649,15 +5649,15 @@ open class Team {
     /// The TeamGetInfoResult struct
     open class TeamGetInfoResult: CustomStringConvertible {
         /// The name of the team.
-        open let name: String
+        public let name: String
         /// The ID of the team.
-        open let teamId: String
+        public let teamId: String
         /// The number of licenses available to the team.
-        open let numLicensedUsers: UInt32
+        public let numLicensedUsers: UInt32
         /// The number of accounts that have been invited or are already active members of the team.
-        open let numProvisionedUsers: UInt32
+        public let numProvisionedUsers: UInt32
         /// (no description)
-        open let policies: TeamPolicies.TeamMemberPolicies
+        public let policies: TeamPolicies.TeamMemberPolicies
         public init(name: String, teamId: String, numLicensedUsers: UInt32, numProvisionedUsers: UInt32, policies: TeamPolicies.TeamMemberPolicies) {
             stringValidator()(name)
             self.name = name
@@ -5703,9 +5703,9 @@ open class Team {
     /// Information about a team member.
     open class TeamMemberInfo: CustomStringConvertible {
         /// Profile of a user as a member of a team.
-        open let profile: Team.TeamMemberProfile
+        public let profile: Team.TeamMemberProfile
         /// The user's role in the team.
-        open let role: Team.AdminTier
+        public let role: Team.AdminTier
         public init(profile: Team.TeamMemberProfile, role: Team.AdminTier) {
             self.profile = profile
             self.role = role
@@ -5738,7 +5738,7 @@ open class Team {
     /// Profile of a user as a member of a team.
     open class TeamMemberProfile: Team.MemberProfile {
         /// List of group IDs of groups that the user belongs to.
-        open let groups: Array<String>
+        public let groups: Array<String>
         public init(teamMemberId: String, email: String, emailVerified: Bool, status: Team.TeamMemberStatus, name: Users.Name, membershipType: Team.TeamMembershipType, groups: Array<String>, externalId: String? = nil, accountId: String? = nil) {
             arrayValidator(itemValidator: stringValidator())(groups)
             self.groups = groups
@@ -5891,14 +5891,14 @@ open class Team {
     /// The UpdatePropertyTemplateArg struct
     open class UpdatePropertyTemplateArg: CustomStringConvertible {
         /// An identifier for property template added by propertiesTemplateAdd.
-        open let templateId: String
+        public let templateId: String
         /// A display name for the property template. Property template names can be up to 256 bytes.
-        open let name: String?
+        public let name: String?
         /// Description for new property template. Property template descriptions can be up to 1024 bytes.
-        open let description_: String?
+        public let description_: String?
         /// This is a list of custom properties to add to the property template. There can be up to 64 properties in a
         /// single property template.
-        open let addFields: Array<Properties.PropertyFieldTemplate>?
+        public let addFields: Array<Properties.PropertyFieldTemplate>?
         public init(templateId: String, name: String? = nil, description_: String? = nil, addFields: Array<Properties.PropertyFieldTemplate>? = nil) {
             stringValidator(minLength: 1, pattern: "(/|ptid:).*")(templateId)
             self.templateId = templateId
@@ -5940,7 +5940,7 @@ open class Team {
     /// The UpdatePropertyTemplateResult struct
     open class UpdatePropertyTemplateResult: CustomStringConvertible {
         /// An identifier for property template added by propertiesTemplateAdd.
-        open let templateId: String
+        public let templateId: String
         public init(templateId: String) {
             stringValidator(minLength: 1, pattern: "(/|ptid:).*")(templateId)
             self.templateId = templateId
