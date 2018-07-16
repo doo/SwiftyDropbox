@@ -302,7 +302,7 @@
 				TargetAttributes = {
 					F2C6FCC41D89E16800E0DD9E = {
 						CreatedOnToolsVersion = 8.0;
-						LastSwiftMigration = 0900;
+						LastSwiftMigration = 1000;
 						ProvisioningStyle = Automatic;
 					};
 					F2C6FCD41D89E1A900E0DD9E = {
