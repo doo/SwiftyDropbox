@@ -46,7 +46,7 @@ open class MobileSharedApplication: SharedApplication {
         let alertController = UIAlertController(
             title: title,
             message: message,
-            preferredStyle: UIAlertControllerStyle.alert)
+            preferredStyle: UIAlertController.Style.alert)
         controller.present(alertController, animated: true, completion: { fatalError(message) })
     }
 
@@ -54,7 +54,7 @@ open class MobileSharedApplication: SharedApplication {
         let alertController = UIAlertController(
             title: title,
             message: message,
-            preferredStyle: UIAlertControllerStyle.alert)
+            preferredStyle: UIAlertController.Style.alert)
 
         alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         alertController.addAction(UIAlertAction(title: "Retry", style: .default) { (_) in
@@ -101,7 +101,7 @@ open class DropboxConnectController: UIViewController, WKNavigationDelegate {
     @objc var cancelButton: UIBarButtonItem?
     @objc var cancelHandler: (() -> Void) = {}
 
-    @objc var indicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+    @objc var indicator = UIActivityIndicatorView(style: .gray)
 
     public init() {
         super.init(nibName: nil, bundle: nil)
